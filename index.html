@@ -7,107 +7,58 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
-        
-        body {
-            font-family: 'Tajawal', sans-serif;
-            background-color: #f1f5f9;
-            min-height: 100vh;
-        }
-
-        .law-item {
-            transition: all 0.3s ease;
-            border-right: 4px solid transparent;
-            cursor: pointer;
-        }
-
-        .law-item.active {
-            background-color: #f0f9ff;
-            border-right-color: #2563eb;
-        }
-
-        .custom-checkbox {
-            width: 22px;
-            height: 22px;
-            cursor: pointer;
-            accent-color: #2563eb;
-        }
-
-        .sticky-header {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #3b82f6;
-            border-radius: 10px;
-        }
+        body { font-family: 'Tajawal', sans-serif; background: #f8fafc; }
+        .law-item { transition: all 0.2s; border-right: 4px solid transparent; }
+        .law-item.active { background: #eff6ff; border-right-color: #2563eb; }
+        .custom-checkbox { width: 22px; height: 22px; accent-color: #2563eb; }
+        .sticky-header { position: sticky; top: 0; z-index: 50; background: white; border-bottom: 1px solid #e2e8f0; }
     </style>
 </head>
-<body class="py-6 px-4">
+<body class="p-4 md:p-8">
 
-<div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
-    <!-- Header -->
+<div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
     <div class="sticky-header p-6 text-center">
-        <h1 class="text-2xl md:text-3xl font-bold text-blue-900">قانون صندوق مساعدة الحالات المرضية</h1>
-        <p class="text-blue-600 font-medium mt-1">قرية محبران - ميثاق الالتزام</p>
-        
-        <div class="mt-4 bg-blue-50 rounded-full h-2 w-full max-w-md mx-auto overflow-hidden">
-            <div id="progressBar" class="bg-blue-600 h-full w-0 transition-all duration-500"></div>
+        <h1 class="text-2xl font-bold text-slate-800">قانون صندوق محبران</h1>
+        <p class="text-blue-600 text-sm">ميثاق الالتزام والتكافل الاجتماعي</p>
+        <div class="mt-4 bg-gray-100 rounded-full h-2 w-full max-w-xs mx-auto overflow-hidden">
+            <div id="progressBar" class="bg-blue-600 h-full w-0 transition-all duration-300"></div>
         </div>
-        <p id="progressText" class="text-[10px] text-gray-400 mt-2 font-bold uppercase">يرجى الموافقة على البنود (0/20)</p>
+        <p id="progressText" class="text-[10px] text-gray-400 mt-2 font-bold uppercase tracking-widest">يرجى الموافقة على جميع البنود (0/20)</p>
     </div>
 
-    <!-- Law Items -->
-    <div class="p-4 md:p-8 space-y-3 max-h-[55vh] overflow-y-auto" id="lawContainer">
-        <!-- Content injected by JS -->
+    <div class="p-4 space-y-3 max-h-[50vh] overflow-y-auto" id="lawContainer">
+        <!-- Laws list -->
     </div>
 
-    <!-- Signature Section -->
-    <div class="p-6 md:p-10 bg-gray-50 border-t border-gray-100">
-        <div class="max-w-md mx-auto space-y-4">
-            <div class="space-y-2 text-center">
-                <label class="block text-sm font-bold text-gray-700">التوقيع بالاسم الثلاثي:</label>
-                <input type="text" id="fullName" placeholder="اكتب اسمك الثلاثي هنا..." 
-                    class="w-full px-5 py-4 rounded-2xl border-2 border-gray-200 focus:border-blue-600 focus:ring-0 outline-none transition-all text-lg text-center font-bold">
-            </div>
+    <div class="p-6 bg-slate-50 border-t border-gray-100 text-center">
+        <div class="max-w-sm mx-auto space-y-4">
+            <input type="text" id="fullName" placeholder="أدخل اسمك الثلاثي للتوقيع" 
+                class="w-full px-5 py-4 rounded-2xl border-2 border-gray-200 focus:border-blue-600 outline-none text-center font-bold text-lg">
             
-            <button id="submitBtn" disabled class="w-full bg-gray-400 text-white font-bold py-4 rounded-2xl shadow-lg cursor-not-allowed transition-all flex items-center justify-center gap-3 active:scale-95">
-                <span id="btnLabel">وافق على جميع البنود أولاً</span>
+            <button id="submitBtn" disabled class="w-full bg-gray-400 text-white font-bold py-4 rounded-2xl shadow-lg transition-all flex items-center justify-center gap-2">
+                <span id="btnLabel">أرسل التوقيع</span>
                 <div id="btnLoader" class="hidden w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
             </button>
-            
-            <div class="text-center pt-2">
-                <p class="text-[12px] text-gray-500 font-bold">تطوير عمرو مسعد الشجاع . إشراف مصطفى الشجاع</p>
-            </div>
+            <p class="text-[10px] text-gray-400">تطوير عمرو مسعد الشجاع . إشراف مصطفى الشجاع</p>
         </div>
     </div>
 
-    <!-- Live Signatures Table -->
     <div class="p-6 bg-white border-t border-gray-100">
-        <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-            <span class="w-2 h-6 bg-blue-600 rounded-full"></span>
-            سجل الملتزمين المعتمدين (مباشر)
+        <h3 class="font-bold text-slate-700 mb-4 flex items-center gap-2">
+            <span class="w-1.5 h-6 bg-blue-600 rounded-full"></span>
+            قائمة الملتزمين المعتمدة (تحديث فوري)
         </h3>
-        <div class="overflow-x-auto rounded-2xl border border-gray-100">
+        <div class="overflow-hidden rounded-2xl border border-gray-100">
             <table class="w-full text-right text-sm">
-                <thead class="bg-gray-50 text-gray-600 font-bold">
+                <thead class="bg-slate-50 text-slate-500">
                     <tr>
                         <th class="px-4 py-3">الاسم</th>
-                        <th class="px-4 py-3">تاريخ التوقيع</th>
+                        <th class="px-4 py-3">التاريخ</th>
                         <th class="px-4 py-3">الحالة</th>
                     </tr>
                 </thead>
                 <tbody id="signaturesTableBody" class="divide-y divide-gray-50">
-                    <tr>
-                        <td colspan="3" class="px-4 py-8 text-center text-gray-400 italic">جاري تحميل سجل الموقعين...</td>
-                    </tr>
+                    <tr><td colspan="3" class="px-4 py-8 text-center text-gray-300 italic">جاري الاتصال بقاعدة البيانات...</td></tr>
                 </tbody>
             </table>
         </div>
@@ -119,7 +70,7 @@
     import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
     import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
-    // Firebase Config (amr4ever-aa8c1)
+    // الإعدادات الخاصة بمشروعك (amr4ever-aa8c1)
     const firebaseConfig = {
       apiKey: "AIzaSyBFHGULzGX0hLPL2biSNPGEEj5boxOLilk",
       authDomain: "amr4ever-aa8c1.firebaseapp.com",
@@ -153,87 +104,70 @@
         "تقديم المصلحة العامة للقرية على المصالح الشخصية."
     ];
 
-    const lawContainer = document.getElementById('lawContainer');
+    const container = document.getElementById('lawContainer');
     lawData.forEach((text, i) => {
-        const div = document.createElement('div');
-        div.className = "law-item p-4 rounded-xl border border-gray-100 bg-gray-50/50 flex gap-4";
-        div.innerHTML = `
-            <input type="checkbox" class="item-check custom-checkbox mt-1 shrink-0">
-            <div>
-                <h3 class="font-bold text-gray-800 text-sm md:text-base">${i+1}. ${text}</h3>
-            </div>
-        `;
-        div.onclick = (e) => { if(e.target.type !== 'checkbox') div.querySelector('input').click(); };
-        lawContainer.appendChild(div);
+        const item = document.createElement('div');
+        item.className = "law-item p-4 rounded-xl border border-gray-100 flex gap-4 items-start";
+        item.innerHTML = `<input type="checkbox" class="item-check custom-checkbox mt-1 shrink-0"><p class="text-sm font-bold text-slate-700">${i+1}. ${text}</p>`;
+        item.onclick = (e) => { if(e.target.type !== 'checkbox') item.querySelector('input').click(); };
+        container.appendChild(item);
     });
 
     const checks = document.querySelectorAll('.item-check');
     const submitBtn = document.getElementById('submitBtn');
-    const btnLabel = document.getElementById('btnLabel');
     const fullNameInput = document.getElementById('fullName');
     const progressBar = document.getElementById('progressBar');
     const progressText = document.getElementById('progressText');
     const tableBody = document.getElementById('signaturesTableBody');
 
-    const validate = () => {
-        const checkedCount = Array.from(checks).filter(c => c.checked).length;
-        const name = fullNameInput.value.trim();
-        const percent = (checkedCount / 20) * 100;
-        progressBar.style.width = `${percent}%`;
-        progressText.textContent = `البنود الموافق عليها (${checkedCount}/20)`;
-
-        if (checkedCount === 20 && name.length >= 8) {
+    const updateStatus = () => {
+        const checked = Array.from(checks).filter(c => c.checked).length;
+        const nameValid = fullNameInput.value.trim().length >= 8;
+        progressBar.style.width = `${(checked/20)*100}%`;
+        progressText.textContent = `الموافقة (${checked}/20)`;
+        
+        if(checked === 20 && nameValid) {
             submitBtn.disabled = false;
             submitBtn.classList.replace('bg-gray-400', 'bg-blue-600');
-            submitBtn.classList.remove('cursor-not-allowed');
-            btnLabel.textContent = "إرسال التوقيع والالتزام";
         } else {
             submitBtn.disabled = true;
             submitBtn.classList.replace('bg-blue-600', 'bg-gray-400');
-            submitBtn.classList.add('cursor-not-allowed');
-            btnLabel.textContent = checkedCount < 20 ? "وافق على جميع البنود" : "اكتب الاسم الثلاثي";
         }
     };
 
-    checks.forEach(c => c.addEventListener('change', (e) => {
-        c.closest('.law-item').classList.toggle('active', c.checked);
-        validate();
-    }));
-    fullNameInput.addEventListener('input', validate);
+    checks.forEach(c => c.onchange = (e) => {
+        e.target.closest('.law-item').classList.toggle('active', e.target.checked);
+        updateStatus();
+    });
+    fullNameInput.oninput = updateStatus;
 
-    // Initialize Firebase
+    // Firebase Init
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
     const auth = getAuth(app);
 
-    const loadSignatures = async () => {
+    const init = async () => {
         try {
             await signInAnonymously(auth);
+            // جلب البيانات من مجموعتك الخاصة "signatures"
             const q = query(collection(db, "signatures"), orderBy("at", "desc"));
             onSnapshot(q, (snapshot) => {
-                tableBody.innerHTML = '';
-                const items = snapshot.docs.map(d => d.data());
-                if(items.length === 0) {
-                    tableBody.innerHTML = '<tr><td colspan="3" class="p-8 text-center text-gray-400">لا توجد توقيعات مسجلة حتى الآن</td></tr>';
-                    return;
-                }
-                items.forEach(d => {
-                    const date = d.at ? new Date(d.at.seconds * 1000).toLocaleDateString('ar-EG') : 'الآن';
+                const data = snapshot.docs.map(d => d.data());
+                tableBody.innerHTML = data.length ? '' : '<tr><td colspan="3" class="p-8 text-center text-gray-400">لا توجد توقيعات بعد</td></tr>';
+                data.forEach(item => {
+                    const date = item.at ? new Date(item.at.seconds * 1000).toLocaleDateString('ar-EG') : 'الآن';
                     tableBody.insertAdjacentHTML('beforeend', `
-                        <tr class="hover:bg-blue-50 transition-colors">
-                            <td class="px-4 py-3 font-bold text-gray-800">${d.name}</td>
-                            <td class="px-4 py-3 text-gray-400 text-xs">${date}</td>
-                            <td class="px-4 py-3 text-green-600 font-bold text-xs">✓ مُلتزم معتمد</td>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-4 py-3 font-bold text-slate-800">${item.name}</td>
+                            <td class="px-4 py-3 text-slate-400 text-xs">${date}</td>
+                            <td class="px-4 py-3 text-green-600 font-bold text-[10px]">✓ معتمد</td>
                         </tr>
                     `);
                 });
-            }, (err) => {
-                tableBody.innerHTML = '<tr><td colspan="3" class="p-8 text-center text-red-500 font-bold">يرجى التأكد من الضغط على زر "Publish" في قواعد Firebase</td></tr>';
             });
         } catch(e) { console.error(e); }
     };
-
-    loadSignatures();
+    init();
 
     submitBtn.onclick = async () => {
         const name = fullNameInput.value.trim();
@@ -241,10 +175,13 @@
         document.getElementById('btnLoader').classList.remove('hidden');
         try {
             await addDoc(collection(db, "signatures"), { name, at: serverTimestamp() });
-            alert("تم تسجيل توقيعك بنجاح في قاعدة البيانات السحابية.");
-            location.reload();
+            alert("تم تسجيل توقيعك بنجاح في قاعدة بياناتك الخاصة!");
+            fullNameInput.value = '';
+            checks.forEach(c => c.checked = false);
+            updateStatus();
+            document.getElementById('btnLoader').classList.add('hidden');
         } catch(e) {
-            alert("خطأ في الاتصال بالقاعدة. تأكد من إعدادات Firestore.");
+            alert("خطأ: تأكد من ضغط زر Publish في الـ Rules");
             submitBtn.disabled = false;
             document.getElementById('btnLoader').classList.add('hidden');
         }
