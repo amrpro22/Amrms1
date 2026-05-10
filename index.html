@@ -19,11 +19,6 @@
             border-right: 4px solid transparent;
         }
 
-        .law-item:hover {
-            background-color: #f8fafc;
-            border-right-color: #3b82f6;
-        }
-
         .law-item.active {
             background-color: #f0f9ff;
             border-right-color: #2563eb;
@@ -47,9 +42,6 @@
         ::-webkit-scrollbar {
             width: 6px;
         }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
         ::-webkit-scrollbar-thumb {
             background: #3b82f6;
             border-radius: 10px;
@@ -70,242 +62,213 @@
         <p id="progressText" class="text-xs text-gray-500 mt-2">يرجى الموافقة على جميع البنود (0/20)</p>
     </div>
 
-    <!-- Law Sections -->
+    <!-- Law Sections Container -->
     <div class="p-6 md:p-10 space-y-4 max-h-[60vh] overflow-y-auto" id="lawContainer">
-        
-        <!-- البند 1 -->
-        <div class="law-item p-4 rounded-xl border border-gray-100 bg-gray-50/50 flex gap-4">
-            <input type="checkbox" class="item-check custom-checkbox mt-1">
-            <div>
-                <h3 class="font-bold text-gray-800 mb-1">1. مبدأ التكافل والمشاركة المجتمعية</h3>
-                <p class="text-sm text-gray-600 leading-relaxed">يقوم الصندوق على مبدأ التكافل الاجتماعي والتعاون بين أبناء القرية، وعلى جميع أبناء القرية المقتدرين المشاركة والمساهمة فيه بحسب القدرة والاستطاعة، حتى يكونوا ضمن برنامج الغرم المجتمعي؛ لأن من يدخل في الغرم يكون له حق في الغنم عند الحاجة. ويهدف هذا البند إلى ترسيخ مبدأ أن الحقوق مرتبطة بالواجبات، وأن المجتمع المتماسك هو الذي يحمل بعضه بعضًا وقت الشدائد.</p>
-            </div>
-        </div>
-
-        <!-- البند 2 -->
-        <div class="law-item p-4 rounded-xl border border-gray-100 bg-gray-50/50 flex gap-4">
-            <input type="checkbox" class="item-check custom-checkbox mt-1">
-            <div>
-                <h3 class="font-bold text-gray-800 mb-1">2. تنظيم التبرعات وتوثيقها ومنع التبرع المباشر</h3>
-                <p class="text-sm text-gray-600 leading-relaxed">جميع التبرعات والمساهمات المالية الخاصة بالحالات المرضية أو الطارئة يجب أن تدخل عبر الصندوق فقط، وتوثق رسميًا وبشكل واضح، ولا يجوز لأي شخص تسليم أي مبلغ مباشرة للمريض أو أسرتة أو لأي جهة أخرى خارج إطار الصندوق. ويهدف هذا البند إلى ضبط الأموال، حفظ الحقوق، تحقيق الشفافية، ومنع الفوضى والعشوائية في الدعم.</p>
-            </div>
-        </div>
-
-        <!-- البند 3 -->
-        <div class="law-item p-4 rounded-xl border border-gray-100 bg-gray-50/50 flex gap-4">
-            <input type="checkbox" class="item-check custom-checkbox mt-1">
-            <div>
-                <h3 class="font-bold text-gray-800 mb-1">3. نطاق تغطية الصندوق وحدود مسؤوليته</h3>
-                <p class="text-sm text-gray-600 leading-relaxed">يقتصر دعم الصندوق على تكاليف العلاج، والفحوصات، والعمليات، والأدوية الأساسية، والرقود بالمستشفى فقط، ولا يتحمل الصندوق أي تكاليف إضافية خارج هذا الإطار، إلا إذا استوجبت الضرورة القصوى ذلك، وبعد التصويت وموافقة نصف أعضاء اللجنة مع الإدارة. ويهدف هذا البند إلى ضبط المصروفات وحماية أموال الصندوق من التوسع غير المنظم.</p>
-            </div>
-        </div>
-
-        <!-- البند 4 -->
-        <div class="law-item p-4 rounded-xl border border-gray-100 bg-gray-50/50 flex gap-4">
-            <input type="checkbox" class="item-check custom-checkbox mt-1">
-            <div>
-                <h3 class="font-bold text-gray-800 mb-1">4. انتهاء مسؤولية الصندوق بعد الوفاة</h3>
-                <p class="text-sm text-gray-600 leading-relaxed">تنتهي مسؤولية الصندوق فور وفاة الحالة بشكل كامل ونهائي، ولا يتحمل أي مصاريف لاحقة تتعلق بالدفن أو العزاء أو الالتزامات الأسرية أو أي مطالبات أخرى، إلا في حالات استثنائية جدًا وبعد تصويت رسمي وموافقة الإدارة واللجنة. ويهدف هذا البند إلى تحديد نهاية المسؤولية بوضوح ومنع فتح التزامات غير منضبطة.</p>
-            </div>
-        </div>
-
-        <!-- البند 5 -->
-        <div class="law-item p-4 rounded-xl border border-gray-100 bg-gray-50/50 flex gap-4">
-            <input type="checkbox" class="item-check custom-checkbox mt-1">
-            <div>
-                <h3 class="font-bold text-gray-800 mb-1">5. تنظيم الحالات البسيطة</h3>
-                <p class="text-sm text-gray-600 leading-relaxed">الحالات التي تقل تكلفتها عن 200 ألف ريال يمني، إذا كانت الأسرة قادرة ومقتدرة ماليًا، لا يشملها دعم الصندوق. ويهدف هذا البند إلى توجيه موارد الصندوق للحالات الأشد احتياجًا والأكثر خطورة.</p>
-            </div>
-        </div>
-
-        <!-- البند 6 -->
-        <div class="law-item p-4 rounded-xl border border-gray-100 bg-gray-50/50 flex gap-4">
-            <input type="checkbox" class="item-check custom-checkbox mt-1">
-            <div>
-                <h3 class="font-bold text-gray-800 mb-1">6. التحقق الصارم من الحالات قبل الدعم</h3>
-                <p class="text-sm text-gray-600 leading-relaxed">لا يتم اعتماد أي حالة أو صرف أي مبلغ إلا بعد التحقق الكامل والدقيق من صحة الحالة واحتياجها الفعلي والتأكد من عدم وجود مصادر دعم أخرى تغطي احتياجها. ويهدف هذا البند إلى حماية أموال الصندوق وضمان وصول الدعم لمستحقيه فقط.</p>
-            </div>
-        </div>
-
-        <!-- البند 7 -->
-        <div class="law-item p-4 rounded-xl border border-gray-100 bg-gray-50/50 flex gap-4">
-            <input type="checkbox" class="item-check custom-checkbox mt-1">
-            <div>
-                <h3 class="font-bold text-gray-800 mb-1">7. القيادة التنفيذية والصلاحيات المخولة</h3>
-                <p class="text-sm text-gray-600 leading-relaxed">يتولى إدارة الصندوق والإشراف المباشر على جميع أعماله كلٌ من: <strong>مصطفى الشجاع، أحمد بن أحمد الشجاع، نبيل الشجاع، ومحمد بن محمد الشجاع</strong>، وهم المخولون رسميًا باتخاذ ومتابعة جميع القرارات والإجراءات المتعلقة بالصندوق والحالات المرضية، بما يشمل استقبال الحالات، التحقق منها، تقييمها، التنسيق مع المستشفيات، اعتماد الدعم العاجل، متابعة العلاج، وتنفيذ قرارات الصندوق.</p>
-            </div>
-        </div>
-
-        <!-- البند 8 - طويل ومفصل -->
-        <div class="law-item p-4 rounded-xl border border-gray-100 bg-gray-50/50 flex gap-4">
-            <input type="checkbox" class="item-check custom-checkbox mt-1">
-            <div class="text-sm">
-                <h3 class="font-bold text-gray-800 mb-2">8. نظام دعم الحالات الطارئة وضوابط الصرف المالية</h3>
-                <div class="space-y-3 text-gray-600">
-                    <p><strong>أولاً: نطاق الدعم:</strong> يشمل العلاج، العمليات، الفحوصات، الأدوية، والرقود. ولا يشمل تعويض الممتلكات أو الديون الشخصية أو مصاريف العزاء.</p>
-                    <p><strong>ثانياً: نسبة المساهمة:</strong> 50% للحالات المرضية، و30% للحوادث العرضية كحد أقصى.</p>
-                    <p><strong>ثالثاً: سقف الدعم:</strong> الحد الأعلى هو 2,000,000 ريال يمني للحالة الواحدة.</p>
-                    <p><strong>رابعاً: تصنيف التكلفة:</strong> أقل من 300 ألف يغطيها الصندوق بالكامل، أكثر من 500 ألف يفتح باب التبرع للمجتمع.</p>
-                    <p><strong>خامساً وسادساً: الشروط والمنع:</strong> يلزم تقرير طبي رسمي، ويحرم من الدعم كل من يثبت كذبه أو تلاعبه أو إخفاءه لمصادر دعم أخرى.</p>
-                    <p><strong>سابعاً وثامناً: الأولوية والحماية:</strong> الأولوية للحالات الخطيرة، ولا صرف بالعاطفة أو القرابة أو الضغط القبلي.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- الباقي من 9 إلى 20 -->
-        <script>
-            const extraItems = [
-                { t: "9. الشورى والتصويت", c: "جميع القرارات المصيرية أو الحالات الكبيرة أو التعديلات الجوهرية تعتمد بالشورى والتصويت، ويكون قرار الأغلبية ملزمًا للجميع." },
-                { t: "10. سرية المجموعة وحماية خصوصية العمل", c: "يُمنع منعًا باتًا إخراج أي أسرار من المجموعة، سواء كانت قرارات، تصويتات، حالات مرضية، أو أي أمور داخلية. أي إخلال بهذا البند يعتبر خيانة للأمانة." },
-                { t: "11. منع الشقاق وإثارة الفتن", c: "يُمنع منعًا باتًا نقل الأخبار أو إثارة الخلافات أو شق الصف. يحق للرئيس إقالة أي عضو يثبت تسببه بشرخ داخل الصف." },
-                { t: "12. أخلاقيات وسلوك أعضاء اللجنة", c: "الالتزام بالعقل والحكمة والهدوء وضبط النفس، وأن يكون هدف النقاش إيجاد الحلول لا صناعة المشاكل." },
-                { t: "13. الالتزام بالحضور والتفاعل الإداري", c: "التغيب عن 3 تصويتات متتالية يؤدي للمساءلة ومن ثم الاستبدال لضمان فاعلية العمل." },
-                { t: "14. الإعفاء من العضوية والعقوبات", c: "يحق للإدارة إعفاء أي عضو يثبت عليه الإهمال أو التقصير أو كثرة الجدل الفارغ أو الإضرار بمصلحة الصندوق." },
-                { t: "15. الحرمان الكامل من الدعم", c: "أي شخص يطلب دعمًا ثم يتواصل مع الناس سرًا لجمع تبرعات دون علم الإدارة يحرم تمامًا من الدعم." },
-                { t: "16. أولوية الدعم وربط الحق بالواجب", c: "من لا يشارك في الصندوق أو لا يلتزم بواجباته المجتمعية لا يحق له المطالبة بالدعم إلا بقرار خاص." },
-                { t: "17. الشفافية المالية وسجل المشاركين", c: "يوجد رابط رسمي يظهر فيه جميع المشاركين ومبالغ مساهماتهم لتعزيز الثقة والشفافية." },
-                { t: "18. التزام أعضاء الإدارة واللجنة بالمساهمة", c: "أعضاء الإدارة هم القدوة الأولى في الالتزام بإنزال مساهماتهم في أسرع وقت." },
-                { t: "19. احترام القرار الجماعي", c: "بعد اتخاذ القرار، يلتزم الجميع باحترامه والعمل به وعدم إثارة الخلاف حوله أو تعطيله." },
-                { t: "20. المصلحة العامة فوق المصالح الشخصية", c: "مصلحة الصندوق والقرية فوق أي مصلحة شخصية أو خلاف فردي لضمان استمرار الخدمة للجميع." }
-            ];
-
-            const container = document.getElementById('lawContainer');
-            extraItems.forEach(item => {
-                const div = document.createElement('div');
-                div.className = "law-item p-4 rounded-xl border border-gray-100 bg-gray-50/50 flex gap-4";
-                div.innerHTML = `
-                    <input type="checkbox" class="item-check custom-checkbox mt-1">
-                    <div>
-                        <h3 class="font-bold text-gray-800 mb-1">${item.t}</h3>
-                        <p class="text-sm text-gray-600 leading-relaxed">${item.c}</p>
-                    </div>
-                `;
-                container.appendChild(div);
-            });
-        </script>
+        <!-- JS will populate items 1-20 here -->
     </div>
 
     <!-- Final Signing Section -->
     <div class="p-6 md:p-10 bg-gray-50 border-t border-gray-100">
         <div class="max-w-md mx-auto space-y-4">
             <div class="space-y-2">
-                <label class="block text-sm font-bold text-gray-700">الاسم الكامل (التوقيع الإلكتروني ملزم):</label>
-                <input type="text" id="fullName" placeholder="أدخل اسمك كما هو في بطاقة الهوية..." 
+                <label class="block text-sm font-bold text-gray-700">الاسم الكامل (التوقيع الإلكتروني):</label>
+                <input type="text" id="fullName" placeholder="اكتب اسمك الثلاثي للموافقة..." 
                     class="w-full px-5 py-3 rounded-xl border-2 border-gray-200 focus:border-blue-600 focus:ring-0 outline-none transition-all text-lg">
             </div>
             
             <button id="submitBtn" disabled class="w-full bg-gray-400 text-white font-bold py-4 rounded-2xl shadow-lg cursor-not-allowed transition-all flex items-center justify-center gap-3">
-                <span>يجب الموافقة على جميع البنود أولاً</span>
+                <span>يجب إكمال المتطلبات</span>
                 <div id="btnLoader" class="hidden w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
             </button>
+            
+            <div class="text-center">
+                <p class="text-[11px] text-gray-400 font-medium">تطوير عمرو مسعد الشجاع . اشراف مصطفى الشجاع</p>
+            </div>
             <p id="errorMsg" class="text-red-500 text-xs text-center font-medium hidden"></p>
+        </div>
+    </div>
+
+    <!-- Table of Signed Users -->
+    <div class="p-6 bg-white border-t border-gray-100">
+        <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+            <span class="w-2 h-6 bg-blue-600 rounded-full"></span>
+            قائمة الموقعين على القانون (سحابياً)
+        </h3>
+        <div class="overflow-x-auto rounded-xl border border-gray-100">
+            <table class="w-full text-right text-sm">
+                <thead class="bg-gray-50 text-gray-600 font-bold">
+                    <tr>
+                        <th class="px-4 py-3">الاسم</th>
+                        <th class="px-4 py-3">تاريخ التوقيع</th>
+                        <th class="px-4 py-3">الحالة</th>
+                    </tr>
+                </thead>
+                <tbody id="signaturesTableBody" class="divide-y divide-gray-50">
+                    <tr>
+                        <td colspan="3" class="px-4 py-8 text-center text-gray-400 italic">جاري تحميل قائمة الموقعين...</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
 
-<!-- Firebase Logic -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
+    // البنود القانونية
+    const lawData = [
+        { t: "1. مبدأ التكافل والمشاركة المجتمعية", c: "يقوم الصندوق على مبدأ التكافل الاجتماعي والتعاون بين أبناء القرية..." },
+        { t: "2. تنظيم التبرعات وتوثيقها ومنع التبرع المباشر", c: "جميع التبرعات والمساهمات المالية يجب أن تدخل عبر الصندوق فقط وتوثق رسمياً..." },
+        { t: "3. نطاق تغطية الصندوق وحدود مسؤوليته", c: "يقتصر دعم الصندوق على تكاليف العلاج، والفحوصات، والعمليات فقط..." },
+        { t: "4. انتهاء مسؤولية الصندوق بعد الوفاة", c: "تنتهي مسؤولية الصندوق فور وفاة الحالة بشكل كامل ونهائي..." },
+        { t: "5. تنظيم الحالات البسيطة", c: "الحالات التي تقل تكلفتها عن 200 ألف ريال يمني لا يشملها دعم الصندوق إذا كانت الأسرة مقتدرة." },
+        { t: "6. التحقق الصارم من الحالات قبل الدعم", c: "لا يتم اعتماد أي حالة إلا بعد التحقق الكامل والدقيق من صحة الاحتياج." },
+        { t: "7. القيادة التنفيذية والصلاحيات المخولة", c: "يتولى الإدارة: مصطفى الشجاع، أحمد بن أحمد الشجاع، نبيل الشجاع، ومحمد بن محمد الشجاع." },
+        { t: "8. نظام دعم الحالات الطارئة", c: "يختص الصندوق بدعم الحالات المرضية الطارئة وفق نظام مالي منظم وسقف 2 مليون ريال." },
+        { t: "9. الشورى والتصويت", c: "جميع القرارات المصيرية تعتمد بالشورى والتصويت، ويكون قرار الأغلبية ملزمًا." },
+        { t: "10. سرية المجموعة وحماية خصوصية العمل", c: "يُمنع منعًا باتًا إخراج أي أسرار من المجموعة، وأي إخلال يعتبر خيانة للأمانة." },
+        { t: "11. منع الشقاق وإثارة الفتن", c: "يُمنع منعًا باتًا نقل الأخبار أو إثارة الخلافات أو شق الصف." },
+        { t: "12. أخلاقيات وسلوك أعضاء اللجنة", c: "الالتزام بالعقل والحكمة والهدوء وضبط النفس في النقاشات." },
+        { t: "13. الالتزام بالحضور والتفاعل الإداري", c: "التغيب عن 3 تصويتات متتالية يؤدي لمنح مهلة 30 يوماً قبل الاستبدال." },
+        { t: "14. الإعفاء من العضوية والعقوبات", c: "يحق للإدارة إعفاء أي عضو يثبت عليه الإهمال أو التقصير." },
+        { t: "15. الحرمان الكامل من الدعم", c: "من يطلب دعماً ويتواصل سراً مع الناس لجمع تبرعات يحرم من الدعم." },
+        { t: "16. أولوية الدعم وربط الحق بالواجب", c: "الأولوية للحالات الأشد خطراً، والالتزام بالمشاركة شرط أساسي للاستفادة." },
+        { t: "17. الشفافية المالية وسجل المشاركين", c: "أموال الصندوق أمانة، وهناك رابط رسمي يظهر جميع المشاركين ومساهماتهم." },
+        { t: "18. التزام أعضاء الإدارة واللجنة", c: "يلتزم جميع أعضاء الإدارة بإنزال مساهماتهم ليكونوا قدوة للجميع." },
+        { t: "19. احترام القرار الجماعي", c: "بعد اتخاذ القرار، يلتزم الجميع باحترامه وعدم إثارة الخلاف حوله." },
+        { t: "20. المصلحة العامة فوق الشخصية", c: "مصلحة الصندوق والقرية فوق أي مصلحة شخصية لضمان استمراره." }
+    ];
+
+    // Firebase Init
     const firebaseConfig = JSON.parse(__firebase_config);
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
-    const appId = typeof __app_id !== 'undefined' ? __app_id : 'mahbran-fund-app';
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'mahbran-signature-app';
 
-    let currentUser = null;
+    // Populate Laws
+    const lawContainer = document.getElementById('lawContainer');
+    lawData.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = "law-item p-4 rounded-xl border border-gray-100 bg-gray-50/50 flex gap-4";
+        div.innerHTML = `
+            <input type="checkbox" class="item-check custom-checkbox mt-1">
+            <div>
+                <h3 class="font-bold text-gray-800 mb-1 text-sm md:text-base">${item.t}</h3>
+                <p class="text-xs md:text-sm text-gray-500 leading-relaxed">${item.c}</p>
+            </div>
+        `;
+        lawContainer.appendChild(div);
+    });
+
     const checks = document.querySelectorAll('.item-check');
     const submitBtn = document.getElementById('submitBtn');
+    const fullNameInput = document.getElementById('fullName');
     const progressBar = document.getElementById('progressBar');
     const progressText = document.getElementById('progressText');
-    const fullNameInput = document.getElementById('fullName');
-    const errorMsg = document.getElementById('errorMsg');
+    const signaturesTableBody = document.getElementById('signaturesTableBody');
 
-    // Initialize Auth
-    const initAuth = async () => {
+    // Validation Check Function
+    function validateForm() {
+        const checkedCount = Array.from(checks).filter(c => c.checked).length;
+        const nameValid = fullNameInput.value.trim().length >= 8;
+        const total = checks.length;
+        
+        // Update Progress
+        const percent = (checkedCount / total) * 100;
+        progressBar.style.width = `${percent}%`;
+        progressText.textContent = `تمت الموافقة على (${checkedCount}/${total}) بنداً`;
+
+        if (checkedCount === total && nameValid) {
+            submitBtn.disabled = false;
+            submitBtn.classList.replace('bg-gray-400', 'bg-blue-600');
+            submitBtn.classList.remove('cursor-not-allowed');
+            submitBtn.querySelector('span').textContent = "أوافق وأرسل التوقيع الآن";
+        } else {
+            submitBtn.disabled = true;
+            submitBtn.classList.replace('bg-blue-600', 'bg-gray-400');
+            submitBtn.classList.add('cursor-not-allowed');
+            submitBtn.querySelector('span').textContent = !nameValid && checkedCount === total ? "يرجى كتابة الاسم الثلاثي" : "أكمل الموافقة على البنود";
+        }
+    }
+
+    // Events
+    checks.forEach(c => c.addEventListener('change', () => {
+        c.closest('.law-item').classList.toggle('active', c.checked);
+        validateForm();
+    }));
+    fullNameInput.addEventListener('input', validateForm);
+
+    // Auth & Data Sync
+    const initApp = async () => {
         if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
             await signInWithCustomToken(auth, __initial_auth_token);
         } else {
             await signInAnonymously(auth);
         }
-    };
-    initAuth();
 
-    onAuthStateChanged(auth, (user) => { currentUser = user; });
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // Real-time listener for signatures (Rule 2: Simple query)
+                const sigQuery = collection(db, 'artifacts', appId, 'public', 'data', 'verified_signatures');
+                onSnapshot(sigQuery, (snapshot) => {
+                    signaturesTableBody.innerHTML = '';
+                    const docs = snapshot.docs
+                        .map(d => d.data())
+                        .sort((a, b) => (b.signedAt?.seconds || 0) - (a.signedAt?.seconds || 0));
 
-    // Progress Logic
-    function updateProgress() {
-        const checkedCount = Array.from(checks).filter(c => c.checked).length;
-        const total = checks.length;
-        const percent = (checkedCount / total) * 100;
-        
-        progressBar.style.width = `${percent}%`;
-        progressText.textContent = `تمت الموافقة على (${checkedCount}/${total}) بنداً`;
+                    if (docs.length === 0) {
+                        signaturesTableBody.innerHTML = '<tr><td colspan="3" class="p-4 text-center text-gray-400">لا يوجد موقعون بعد</td></tr>';
+                        return;
+                    }
 
-        if (checkedCount === total) {
-            submitBtn.disabled = false;
-            submitBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
-            submitBtn.classList.add('bg-blue-600', 'hover:bg-blue-700');
-            submitBtn.querySelector('span').textContent = "أوافق وأوقع على هذا القانون";
-        } else {
-            submitBtn.disabled = true;
-            submitBtn.classList.add('bg-gray-400', 'cursor-not-allowed');
-            submitBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
-            submitBtn.querySelector('span').textContent = "يجب الموافقة على جميع البنود أولاً";
-        }
-    }
-
-    checks.forEach(check => {
-        check.addEventListener('change', () => {
-            const parent = check.closest('.law-item');
-            if(check.checked) parent.classList.add('active');
-            else parent.classList.remove('active');
-            updateProgress();
+                    docs.forEach(data => {
+                        const date = data.signedAt ? new Date(data.signedAt.seconds * 1000).toLocaleDateString('ar-EG') : '-';
+                        const row = `
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-4 py-3 font-medium text-gray-800">${data.name}</td>
+                                <td class="px-4 py-3 text-gray-500">${date}</td>
+                                <td class="px-4 py-3 text-green-600 font-bold">✓ معتمد</td>
+                            </tr>
+                        `;
+                        signaturesTableBody.insertAdjacentHTML('beforeend', row);
+                    });
+                }, (err) => console.error(err));
+            }
         });
-    });
+    };
 
-    // Submit Logic
+    initApp();
+
+    // Submit Action
     submitBtn.addEventListener('click', async () => {
-        const name = fullNameInput.value.trim();
-        if (name.length < 8) {
-            errorMsg.textContent = "يرجى إدخال اسمك الكامل (ثلاثي على الأقل) للتوثيق.";
-            errorMsg.classList.remove('hidden');
-            return;
-        }
-
-        if (!currentUser) return;
+        const user = auth.currentUser;
+        if (!user) return;
 
         submitBtn.disabled = true;
         document.getElementById('btnLoader').classList.remove('hidden');
-        errorMsg.classList.add('hidden');
 
         try {
-            const docRef = collection(db, 'artifacts', appId, 'public', 'data', 'fund_signatures');
-            await addDoc(docRef, {
-                fullName: name,
-                uid: currentUser.uid,
-                lawVersion: '2.0',
-                agreementDate: serverTimestamp(),
-                approvedItemsCount: checks.length
+            await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'verified_signatures'), {
+                name: fullNameInput.value.trim(),
+                uid: user.uid,
+                signedAt: serverTimestamp(),
+                version: '3.0'
             });
 
-            // Success UI
-            document.body.innerHTML = `
-                <div class="max-w-md mx-auto mt-20 p-10 bg-white rounded-3xl shadow-2xl text-center space-y-6">
-                    <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto">
-                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                    </div>
-                    <h2 class="text-2xl font-bold text-gray-800">تم التوقيع بنجاح</h2>
-                    <p class="text-gray-600">شكراً لك يا <strong>${name}</strong>. تم تسجيل موافقتك على قانون صندوق محبران في السجلات السحابية الرسمية.</p>
-                    <button onclick="window.location.reload()" class="text-blue-600 font-bold hover:underline">العودة للرئيسية</button>
-                </div>
-            `;
+            // Reset UI
+            fullNameInput.value = '';
+            checks.forEach(c => { c.checked = false; c.closest('.law-item').classList.remove('active'); });
+            validateForm();
+            document.getElementById('btnLoader').classList.add('hidden');
+            
+            // Custom modal show
+            alert("تم إرسال توقيعك وتوثيقه في الجدول بنجاح."); // Simple placeholder, better UI in a real app
         } catch (e) {
             console.error(e);
-            errorMsg.textContent = "حدث خطأ في الاتصال، يرجى المحاولة مرة أخرى.";
-            errorMsg.classList.remove('hidden');
             submitBtn.disabled = false;
             document.getElementById('btnLoader').classList.add('hidden');
         }
