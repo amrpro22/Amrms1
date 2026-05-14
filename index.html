@@ -21,7 +21,7 @@
         .law-item.active { background-color: #ffffff; border-right-color: #2563eb; transform: translateX(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
         .custom-checkbox { width: 26px; height: 26px; cursor: pointer; accent-color: #2563eb; }
         .sticky-header { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); border-bottom: 1px solid #e2e8f0; }
-        #pdf-content { position: absolute; left: -9999px; top: -9999px; width: 800px; }
+        #pdf-content { position: absolute; left: -9999px; top: -9999px; width: 800px; background: white; }
         #lawContainer::-webkit-scrollbar { width: 6px; }
         #lawContainer::-webkit-scrollbar-track { background: #f1f5f9; }
         #lawContainer::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
@@ -61,7 +61,7 @@
     <!-- Action Section -->
     <div class="p-8 md:p-12 bg-white border-t border-gray-100">
         <div class="max-w-md mx-auto space-y-6 text-center">
-            <!-- الإقرار والتعهد الجديد -->
+            <!-- الإقرار والتعهد -->
             <div class="bg-gray-50 p-5 rounded-2xl border-r-4 border-blue-600 text-right shadow-sm">
                 <h3 class="text-lg font-black text-gray-800 mb-3 flex items-center gap-2">
                     <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
@@ -110,7 +110,8 @@
                     نسخ القائمة
                 </button>
                 <button id="downloadPdf" class="hidden text-xs bg-red-600 text-white px-5 py-3 rounded-2xl font-bold hover:bg-red-700 shadow-lg flex items-center gap-2">
-                    تصدير PDF
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    تحميل PDF شامل
                 </button>
             </div>
         </div>
@@ -135,12 +136,21 @@
 </div>
 
 <!-- Hidden PDF Template -->
-<div id="pdf-content" style="padding: 40px; direction: rtl; font-family: 'Tajawal', sans-serif; background: white; color: black;">
-    <div style="text-align: center; border-bottom: 4px solid #1e3a8a; padding-bottom: 20px; margin-bottom: 25px;">
-        <h1 style="color: #1e3a8a; font-size: 24px; margin: 0; font-weight: 900;">التقرير الرسمي لملحق قانون صندوق محبران</h1>
-        <p style="color: #2563eb; font-size: 14px; font-weight: bold; margin-top: 8px;">توثيق الالتزام بالمواد المستحدثة (٢٩ - ٤٦)</p>
+<div id="pdf-content">
+    <div style="padding: 35px; direction: rtl; font-family: 'Tajawal', 'Arial', sans-serif; background: white; color: #1a202c;">
+        <div style="text-align: center; border-bottom: 4px solid #1e3a8a; padding-bottom: 20px; margin-bottom: 25px;">
+            <h1 style="color: #1e3a8a; font-size: 26px; margin: 0; font-weight: 900;">التقرير الرسمي لملحق قانون صندوق محبران</h1>
+            <p style="color: #2563eb; font-size: 14px; font-weight: bold; margin-top: 8px;">توثيق الالتزام بالمواد المستحدثة (٢٩ - ٤٦)</p>
+        </div>
+        
+        <div id="pdf-laws" style="font-size: 12px; line-height: 1.6; color: #2d3748; text-align: justify;"></div>
+        
+        <div id="pdf-signatures" style="margin-top: 35px; padding-top: 20px; border-top: 2px solid #e2e8f0;"></div>
+        
+        <div style="margin-top: 30px; text-align: center; font-size: 10px; color: #718096; border-top: 1px solid #e2e8f0; padding-top: 20px;">
+            تم إنشاء هذا التقرير تلقائياً - صندوق مساعدة الحالات المرضية الطارئة - قرية محبران
+        </div>
     </div>
-    <div id="pdf-laws" style="font-size: 11px; line-height: 1.5; color: #1e293b; text-align: justify;"></div>
 </div>
 
 <script type="module">
@@ -165,9 +175,7 @@
             details: [
                 { text: "ويُعد كل من يمتنع عن المساهمة أو يتهرب من الالتزام أو يخرج عن نظام الصندوق أو يعمل على شق الصف أو تعطيل مصالح القرية أو إثارة الفوضى والخلافات شخصًا خارجًا عن الغُرم ومسار القرية ونظامها المجتمعي، وبالتالي يفقد حقه وحق أسرته في المطالبة بالدعم أو الاستفادة من خدمات الصندوق مستقبلًا، إلا بقرار استثنائي من الإدارة واللجنة التشاورية." },
                 { text: "كما يحق للإدارة توثيق حالات الامتناع أو الإضرار بمصالح الصندوق أو مخالفة أنظمته واتخاذ ما تراه مناسبًا من إجراءات تنظيمية وقانونية تحفظ مصلحة الصندوق ووحدة القرية وعدالة التوزيع بين الملتزمين وغير الملتزمين." }
-            ],
-            color: "border-blue-200 bg-blue-50/30",
-            titleColor: "text-blue-800"
+            ]
         },
         {
             id: 30,
@@ -179,9 +187,7 @@
                 { text: "يُمنع تسليم أي مبالغ مباشرة للمريض أو أسرته أو لأي جهة خارج إطار الصندوق.", num: "3" },
                 { text: "يُمنع نشر الحالات أو جمع التبرعات أو التواصل مع المتبرعين خارج إطار الإدارة دون إذن رسمي.", num: "4" },
                 { text: "كل من يخالف هذا النظام يحق للإدارة حرمانه من الدعم الحالي والمستقبلي واستبعاده من برامج الصندوق والقرية.", num: "5" }
-            ],
-            color: "border-emerald-200 bg-emerald-50/30",
-            titleColor: "text-emerald-800"
+            ]
         },
         {
             id: 31,
@@ -195,9 +201,7 @@
                 { text: "تكاليف الرقود والتنويم بالمستشفيات.", num: "5" },
                 { text: "ولا يشمل الصندوق: تعويض خسائر الممتلكات، إصلاح الأضرار، سداد الديون، المصاريف المعيشية، مصاريف الدفن والعزاء، أو أي مصاريف كمالية أو علاج في جهات غير معتمدة." },
                 { text: "وتنتهي مسؤولية الصندوق فور وفاة الحالة، ولا يتحمل أي التزامات لاحقة إلا بقرار استثنائي وموافقة الإدارة واللجنة التشاورية، ويشترط موافقة الرئيس والنائب معًا." }
-            ],
-            color: "border-purple-200 bg-purple-50/30",
-            titleColor: "text-purple-800"
+            ]
         },
         {
             id: 32,
@@ -210,9 +214,7 @@
                 { text: "لا يجوز أن تستحوذ حالة واحدة على ما يضر باستمرارية الصندوق أو يؤثر على الحالات القادمة.", num: "4" },
                 { text: "المبلغ المتبقي يتم تغطيته من: أهل المريض، أهل الخير، أبناء القرية، والمتبرعين.", num: "5" },
                 { text: "يساعد الصندوق المريض مرة واحدة في السنة، إلا إذا ساءت الحالة وتمت مناقشتها داخل الإدارة والموافقة عليها كحالة استثنائية.", num: "6" }
-            ],
-            color: "border-amber-200 bg-amber-50/30",
-            titleColor: "text-amber-800"
+            ]
         },
         {
             id: 33,
@@ -239,9 +241,7 @@
                 { text: "لا يجوز استنزاف أموال الصندوق في حالات يمكن علاجها بطرق أقل تكلفة." },
                 { text: "جميع قرارات الدعم تخضع لمبدأ العدالة والأولوية والاستدامة المالية." },
                 { text: "يحق للإدارة إيقاف أو تقليل الدعم إذا تبين وجود إسراف أو سوء استخدام أو إخفاء معلومات مؤثرة." }
-            ],
-            color: "border-cyan-200 bg-cyan-50/30",
-            titleColor: "text-cyan-800"
+            ]
         },
         {
             id: 34,
@@ -255,9 +255,7 @@
                 { text: "الالتزام الكامل بأنظمة الصندوق.", num: "5" },
                 { text: "التحقق من صحة الحالة واحتياجها الفعلي.", num: "6" },
                 { text: "وللإدارة حق التدخل العاجل في الحالات الحرجة التي تهدد حياة المريض." }
-            ],
-            color: "border-rose-200 bg-rose-50/30",
-            titleColor: "text-rose-800"
+            ]
         },
         {
             id: 35,
@@ -269,9 +267,7 @@
                 { text: "الوضع المالي للأسرة.", num: "3" },
                 { text: "التزام صاحب الحالة وأسرته تجاه الصندوق.", num: "4" },
                 { text: "خلو سجل المستفيد من المخالفات أو السوابق التنظيمية.", num: "5" }
-            ],
-            color: "border-indigo-200 bg-indigo-50/30",
-            titleColor: "text-indigo-800"
+            ]
         },
         {
             id: 36,
@@ -288,9 +284,7 @@
                 { text: "استخدام الوساطات أو الضغوط الاجتماعية.", num: "8" },
                 { text: "استغلال الحالة لتحقيق مكاسب شخصية أو إعلامية.", num: "9" },
                 { text: "نشر معلومات مضللة ضد الإدارة.", num: "10" }
-            ],
-            color: "border-red-200 bg-red-50/30",
-            titleColor: "text-red-800"
+            ]
         },
         {
             id: 37,
@@ -302,9 +296,7 @@
                 { text: "جميع قرارات الصرف تخضع للنظام واللوائح فقط.", num: "3" },
                 { text: "تُوثق كل حالة ماليًا وإداريًا بشكل كامل.", num: "4" },
                 { text: "يتم توفير سجل واضح للمشاركين ومبالغ مساهماتهم.", num: "5" }
-            ],
-            color: "border-slate-200 bg-slate-50/30",
-            titleColor: "text-slate-800"
+            ]
         },
         {
             id: 38,
@@ -316,9 +308,7 @@
                 { text: "نبيل أحمد مصلح الشجاع" },
                 { text: "محمد بن محمد الحاج الشجاع" },
                 { text: "ويحق لهم: استقبال الحالات، اعتماد أو رفض الطلبات، متابعة العلاج، الإشراف المالي والإداري، تنفيذ وإصدار القرارات بشأن كل حاله، وإدارة كل ما يتعلق بمصلحة الصندوق والقرية." }
-            ],
-            color: "border-blue-300 bg-blue-100/20",
-            titleColor: "text-blue-900"
+            ]
         },
         {
             id: 39,
@@ -334,9 +324,7 @@
                 { text: "إصدار التعليمات." },
                 { text: "فرض العقوبات." },
                 { text: "تعيين أو إعفاء الأعضاء." }
-            ],
-            color: "border-teal-200 bg-teal-50/30",
-            titleColor: "text-teal-800"
+            ]
         },
         {
             id: 40,
@@ -347,9 +335,7 @@
                 { text: "يُعتبر تصويت الرئيس والنائب مرجحًا عند التعادل.", num: "2" },
                 { text: "إذا وصلت اللجنة إلى انسداد، يحق للرئيس والنائب تمرير القرار الذي يحقق مصلحة الصندوق.", num: "3" },
                 { text: "يلتزم الجميع بتنفيذ القرار بعد اعتماده.", num: "4" }
-            ],
-            color: "border-orange-200 bg-orange-50/30",
-            titleColor: "text-orange-800"
+            ]
         },
         {
             id: 41,
@@ -358,9 +344,7 @@
             details: [
                 { text: "كما يُمنع: إثارة الفتن، نقل الأخبار، شق الصف، نشر النعرات والانقسامات، تعطيل أعمال الإدارة، أو الإضرار بمصلحة الصندوق والقرية." },
                 { text: "ويحق للإدارة: الإنذار الرسمي، التجميد المؤقت، الإعفاء من المنصب، الاستبعاد النهائي، إحالة المخالف إلى الجهات المختصة والقانون إذا ترتب ضرر على أفعاله." }
-            ],
-            color: "border-red-300 bg-red-100/10",
-            titleColor: "text-red-900"
+            ]
         },
         {
             id: 42,
@@ -373,9 +357,7 @@
                 { text: "الالتزام بأدب الحوار وضبط النفس.", num: "4" },
                 { text: "تقديم مصلحة القرية والصندوق على المصالح الشخصية.", num: "5" },
                 { text: "المحافظة على هيبة الإدارة والعمل المؤسسي.", num: "6" }
-            ],
-            color: "border-violet-200 bg-violet-50/30",
-            titleColor: "text-violet-800"
+            ]
         },
         {
             id: 43,
@@ -386,9 +368,7 @@
                 { text: "كل عضو مُلزم بالقيام بمهامه وتحمل مسؤوليته بجدية.", num: "2" },
                 { text: "إذا ثبت تقصير العضو أو غيابه أو عدم تفاعله، يحق للإدارة إعفاؤه واستبداله بعضو أكثر التزامًا وكفاءة.", num: "3" },
                 { text: "العضوية تكليف ومسؤولية وليست منصبًا شكليًا.", num: "4" }
-            ],
-            color: "border-pink-200 bg-pink-50/30",
-            titleColor: "text-pink-800"
+            ]
         },
         {
             id: 44,
@@ -400,9 +380,7 @@
                 { text: "إذا لم يُحسم أي قرار خلال خمسة أيام، يحق للرئيس تمريره واعتماده بما يحقق المصلحة العامة.", num: "3" },
                 { text: "يلتزم الجميع بتنفيذ هذه المواد دون تعطيل أو مماطلة.", num: "4" },
                 { text: "يحق للإدارة تعديل أو إضافة أي بنود مستقبلية بما يخدم مصلحة الصندوق والقرية.", num: "5" }
-            ],
-            color: "border-sky-200 bg-sky-50/30",
-            titleColor: "text-sky-800"
+            ]
         },
         {
             id: 45,
@@ -416,9 +394,7 @@
                 { text: "إعداد التصاميم الإعلامية والتقارير البصرية.", num: "4" },
                 { text: "تطوير الأنظمة التقنية والتنظيمية الخاصة بالصندوق.", num: "5" },
                 { text: "تنفيذ أي أعمال تصميم أو تطوير تكلفه بها الإدارة.", num: "6" }
-            ],
-            color: "border-fuchsia-200 bg-fuchsia-50/30",
-            titleColor: "text-fuchsia-800"
+            ]
         },
         {
             id: 46,
@@ -426,9 +402,7 @@
             content: "تُعتبر جميع المواد الواردة في هذا الملحق جزءًا لا يتجزأ من القانون الأساسي لصندوق الحالات المرضية الطارئة – قرية محبران، وتُعتمد بكامل موادها وبنودها بعد موافقة الإدارة والأعضاء المعنيين.",
             details: [
                 { text: "ويلتزم جميع الأعضاء والمشاركين والمستفيدين بتنفيذ هذه المواد واحترامها والعمل بموجبها، ويحق للإدارة اتخاذ ما يلزم من إجراءات تنظيمية وقانونية بحق كل من يخالف أحكام هذا الملحق أو يضر بمصلحة الصندوق والقرية." }
-            ],
-            color: "border-gray-200 bg-gray-50/30",
-            titleColor: "text-gray-800"
+            ]
         }
     ];
 
@@ -449,7 +423,29 @@
 
     lawArticles.forEach((art) => {
         const item = document.createElement('div');
-        item.className = `law-item article-card border-2 ${art.color} flex gap-4 items-start cursor-pointer transition-all duration-300`;
+        item.className = `law-item article-card border-2 flex gap-4 items-start cursor-pointer transition-all duration-300`;
+        let colorClass = "";
+        let titleColorClass = "";
+        if (art.id === 29) { colorClass = "border-blue-200 bg-blue-50/30"; titleColorClass = "text-blue-800"; }
+        else if (art.id === 30) { colorClass = "border-emerald-200 bg-emerald-50/30"; titleColorClass = "text-emerald-800"; }
+        else if (art.id === 31) { colorClass = "border-purple-200 bg-purple-50/30"; titleColorClass = "text-purple-800"; }
+        else if (art.id === 32) { colorClass = "border-amber-200 bg-amber-50/30"; titleColorClass = "text-amber-800"; }
+        else if (art.id === 33) { colorClass = "border-cyan-200 bg-cyan-50/30"; titleColorClass = "text-cyan-800"; }
+        else if (art.id === 34) { colorClass = "border-rose-200 bg-rose-50/30"; titleColorClass = "text-rose-800"; }
+        else if (art.id === 35) { colorClass = "border-indigo-200 bg-indigo-50/30"; titleColorClass = "text-indigo-800"; }
+        else if (art.id === 36) { colorClass = "border-red-200 bg-red-50/30"; titleColorClass = "text-red-800"; }
+        else if (art.id === 37) { colorClass = "border-slate-200 bg-slate-50/30"; titleColorClass = "text-slate-800"; }
+        else if (art.id === 38) { colorClass = "border-blue-300 bg-blue-100/20"; titleColorClass = "text-blue-900"; }
+        else if (art.id === 39) { colorClass = "border-teal-200 bg-teal-50/30"; titleColorClass = "text-teal-800"; }
+        else if (art.id === 40) { colorClass = "border-orange-200 bg-orange-50/30"; titleColorClass = "text-orange-800"; }
+        else if (art.id === 41) { colorClass = "border-red-300 bg-red-100/10"; titleColorClass = "text-red-900"; }
+        else if (art.id === 42) { colorClass = "border-violet-200 bg-violet-50/30"; titleColorClass = "text-violet-800"; }
+        else if (art.id === 43) { colorClass = "border-pink-200 bg-pink-50/30"; titleColorClass = "text-pink-800"; }
+        else if (art.id === 44) { colorClass = "border-sky-200 bg-sky-50/30"; titleColorClass = "text-sky-800"; }
+        else if (art.id === 45) { colorClass = "border-fuchsia-200 bg-fuchsia-50/30"; titleColorClass = "text-fuchsia-800"; }
+        else { colorClass = "border-gray-200 bg-gray-50/30"; titleColorClass = "text-gray-800"; }
+        
+        item.className += ` ${colorClass}`;
         
         const detailsHtml = art.details ? `
             <ul class="details-list ${art.details.some(d => d.num) ? 'num-list' : ''}">
@@ -459,7 +455,7 @@
         item.innerHTML = `
             <input type="checkbox" class="item-check custom-checkbox mt-1 shrink-0">
             <div class="flex-1">
-                <span class="article-title ${art.titleColor}">${art.title}</span>
+                <span class="article-title ${titleColorClass}">${art.title}</span>
                 ${art.content ? `<p class="article-content text-gray-800 font-bold">${art.content}</p>` : ''}
                 ${detailsHtml}
             </div>
@@ -503,7 +499,7 @@
                 tableBody.innerHTML = '';
                 signatures = [];
                 if(snap.empty) {
-                    tableBody.innerHTML = '<table><td colspan="3" class="p-8 text-center text-gray-400 font-bold">لا توجد توقيعات حالياً</td></tr>';
+                    tableBody.innerHTML = '<tr><td colspan="3" class="p-8 text-center text-gray-400 font-bold">لا توجد توقيعات حالياً</td></tr>';
                     return;
                 }
                 downloadBtn.classList.remove('hidden');
@@ -547,8 +543,6 @@
 
     copyBtn.onclick = () => {
         const listText = "سجل الملتزمين بملحق قانون صندوق محبران:\n" + signatures.map((s, i) => `${i+1}. ${s.name}`).join('\n');
-        
-        // استخدام الطريقة البديلة للنسخ كما في التعليمات لضمان التوافق مع البيئات المختلفة
         const textArea = document.createElement("textarea");
         textArea.value = listText;
         document.body.appendChild(textArea);
@@ -563,31 +557,92 @@
     };
 
     downloadBtn.onclick = async () => {
-        const pdfContent = document.getElementById('pdf-content');
-        document.getElementById('pdf-laws').innerHTML = lawArticles.map(art => `
-            <div style="margin-bottom:15px; border-bottom: 1px solid #eee; padding-bottom:10px;">
-                <h3 style="margin:0 0 5px 0; color:#1e3a8a; font-size:12px;">${art.title}</h3>
-                ${art.content ? `<p style="margin:0; font-weight:bold;">${art.content}</p>` : ''}
-                <ul style="margin-top:5px; padding-right:15px; font-size:10px; list-style:none;">
-                    ${art.details.map(d => `<li style="margin-bottom:4px;">${d.num ? d.num + '. ' : '• '}${d.text}</li>`).join('')}
+        // Build PDF laws HTML with full details
+        const pdfLawsHtml = lawArticles.map(art => {
+            const detailsHtml = art.details ? `
+                <ul style="margin-top: 8px; padding-right: 25px; list-style: none;">
+                    ${art.details.map(d => {
+                        if (d.bold) {
+                            return `<li style="margin-bottom: 6px; font-weight: bold; margin-top: 10px;">${d.text}</li>`;
+                        } else if (d.num) {
+                            return `<li style="margin-bottom: 4px;"><strong>${d.num}.</strong> ${d.text}</li>`;
+                        } else {
+                            return `<li style="margin-bottom: 4px;">• ${d.text}</li>`;
+                        }
+                    }).join('')}
                 </ul>
-            </div>
-        `).join('');
+            ` : '';
+            
+            return `
+                <div style="margin-bottom: 18px; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px;">
+                    <h3 style="margin: 0 0 6px 0; color: #1e3a8a; font-size: 14px; font-weight: 900;">${art.title}</h3>
+                    ${art.content ? `<p style="margin: 0 0 5px 0; font-weight: bold; color: #2d3748;">${art.content}</p>` : ''}
+                    ${detailsHtml}
+                </div>
+            `;
+        }).join('');
         
-        pdfContent.style.position = 'static';
+        // Build signatures table for PDF
+        let signaturesHtml = '';
+        if (signatures.length > 0) {
+            signaturesHtml = `
+                <h3 style="font-size: 16px; font-weight: 900; color: #1e3a8a; margin-bottom: 15px;">📋 سجل الملتزمين والتوقيعات</h3>
+                <table style="width: 100%; border-collapse: collapse; font-size: 11px; text-align: right;">
+                    <thead>
+                        <tr style="background-color: #f1f5f9; border-bottom: 2px solid #cbd5e1;">
+                            <th style="padding: 10px; border: 1px solid #e2e8f0;">#</th>
+                            <th style="padding: 10px; border: 1px solid #e2e8f0;">الاسم الكامل</th>
+                            <th style="padding: 10px; border: 1px solid #e2e8f0;">تاريخ التوقيع</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${signatures.map((s, idx) => `
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center;">${idx + 1}</td>
+                                <td style="padding: 8px; border: 1px solid #e2e8f0; font-weight: bold;">${s.name}</td>
+                                <td style="padding: 8px; border: 1px solid #e2e8f0;">${s.date}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+                <p style="margin-top: 15px; font-size: 11px; color: #2d3748;">عدد الملتزمين: ${signatures.length} شخص</p>
+            `;
+        } else {
+            signaturesHtml = `<p style="font-size: 12px; color: #718096;">لا توجد توقيعات مسجلة حتى الآن.</p>`;
+        }
+        
+        document.getElementById('pdf-laws').innerHTML = pdfLawsHtml;
+        document.getElementById('pdf-signatures').innerHTML = signaturesHtml;
+        
+        const pdfElement = document.getElementById('pdf-content');
+        pdfElement.style.position = 'static';
+        pdfElement.style.left = '0';
+        pdfElement.style.top = '0';
+        
         const opt = { 
-            margin: 10, 
-            filename: 'ملحق_قانون_صندوق_محبران.pdf', 
+            margin: [10, 10, 10, 10],
+            filename: `ملحق_قانون_صندوق_محبران_${new Date().toLocaleDateString('ar-EG')}.pdf`, 
             image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2, useCORS: true }, 
+            html2canvas: { scale: 2, useCORS: true, letterRendering: true },
             jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } 
         };
+        
         try {
-            await html2pdf().from(pdfContent).set(opt).save();
+            const loader = document.createElement('div');
+            loader.innerHTML = '<div style="position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:white; padding:20px; border-radius:15px; box-shadow:0 20px 35px rgba(0,0,0,0.2); z-index:9999; text-align:center;"><div class="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full mx-auto mb-3"></div><p class="font-bold">جاري تجهيز ملف PDF...</p></div>';
+            document.body.appendChild(loader);
+            
+            await html2pdf().from(pdfElement).set(opt).save();
+            
+            document.body.removeChild(loader);
         } catch (err) {
-            alert("حدث خطأ أثناء توليد ملف PDF.");
+            console.error("PDF Error:", err);
+            alert("حدث خطأ أثناء توليد ملف PDF. يرجى المحاولة مرة أخرى.");
         }
-        pdfContent.style.position = 'absolute';
+        
+        pdfElement.style.position = 'absolute';
+        pdfElement.style.left = '-9999px';
+        pdfElement.style.top = '-9999px';
     };
 </script>
 </body>
