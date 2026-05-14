@@ -15,7 +15,6 @@
             min-height: 100vh;
             touch-action: pan-x pan-y;
         }
-        /* منع التكبير التلقائي في الآيفون عند التركيز على الحقول */
         input[type="text"] {
             font-size: 16px !important;
         }
@@ -425,14 +424,13 @@
     let signatures = [];
 
     if (localStorage.getItem('mahbran_appendix_final_v1')) {
-        document.getElementById('registrationGuard').innerHTML = `<div class="bg-emerald-50 p-6 rounded-2xl border border-emerald-200 font-bold text-emerald-800">✓ تم توثيق موافقتك على الملحق الإضافي بنجاح</div>`;
+        document.getElementById('registrationGuard').innerHTML = `<div class="bg-emerald-50 p-6 rounded-2xl border border-emerald-200 font-bold text-emerald-800 text-center">✓ تم توثيق موافقتك على الملحق الإضافي بنجاح</div>`;
     }
 
     lawArticles.forEach((art) => {
         const item = document.createElement('div');
         item.className = `law-item article-card border-2 ${art.color} flex gap-4 items-start cursor-pointer transition-all duration-300`;
         
-        // بناء القائمة بشكل عمودي (أرقام أو نقاط)
         const detailsHtml = art.details ? `
             <ul class="details-list ${art.details.some(d => d.num) ? 'num-list' : ''}">
                 ${art.details.map(d => `<li ${d.num ? `data-num="${d.num}"` : ''}>${d.text}</li>`).join('')}
@@ -503,7 +501,10 @@
                     `);
                 });
             });
-        } catch (e) { console.error("Firebase Error", e); }
+        } catch (e) { 
+            console.error("Firebase Error", e);
+            tableBody.innerHTML = '<tr><td colspan="3" class="p-8 text-center text-red-400 font-bold">حدث خطأ في تحميل البيانات. يرجى التأكد من اتصال الإنترنت.</td></tr>';
+        }
     };
     loadSignatures();
 
@@ -517,13 +518,28 @@
             });
             localStorage.setItem('mahbran_appendix_final_v1', 'true');
             location.reload();
-        } catch (e) { alert("حدث خطأ، حاول مجدداً"); submitBtn.disabled = false; }
+        } catch (e) { 
+            alert("حدث خطأ أثناء حفظ التوقيع، حاول مجدداً"); 
+            submitBtn.disabled = false; 
+            document.getElementById('btnLoader').classList.add('hidden');
+        }
     };
 
     copyBtn.onclick = () => {
         const listText = "سجل الملتزمين بملحق قانون صندوق محبران:\n" + signatures.map((s, i) => `${i+1}. ${s.name}`).join('\n');
-        navigator.clipboard.writeText(listText);
-        alert("تم نسخ القائمة!");
+        
+        // استخدام الطريقة البديلة للنسخ كما في التعليمات لضمان التوافق مع البيئات المختلفة
+        const textArea = document.createElement("textarea");
+        textArea.value = listText;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            alert("تم نسخ القائمة إلى الحافظة بنجاح!");
+        } catch (err) {
+            alert("فشل النسخ، يرجى نسخ القائمة يدوياً.");
+        }
+        document.body.removeChild(textArea);
     };
 
     downloadBtn.onclick = async () => {
@@ -540,12 +556,20 @@
         
         pdfContent.style.position = 'static';
         const opt = { 
-            margin: 10, filename: 'ملحق_قانون_صندوق_محبران.pdf', html2canvas: { scale: 2 }, 
+            margin: 10, 
+            filename: 'ملحق_قانون_صندوق_محبران.pdf', 
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2, useCORS: true }, 
             jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } 
         };
-        await html2pdf().from(pdfContent).set(opt).save();
+        try {
+            await html2pdf().from(pdfContent).set(opt).save();
+        } catch (err) {
+            alert("حدث خطأ أثناء توليد ملف PDF.");
+        }
         pdfContent.style.position = 'absolute';
     };
 </script>
 </body>
 </html>
+
