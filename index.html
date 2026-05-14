@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>توقيع قانون صندوق محبران - الملحق الإضافي</title>
+    <title>توقيع قانون صندوق محبران - الملحق الإضافي الشامل</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
@@ -14,17 +14,15 @@
         .law-item.active { background-color: #ffffff; border-right-color: #2563eb; transform: translateX(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
         .custom-checkbox { width: 26px; height: 26px; cursor: pointer; accent-color: #2563eb; }
         .sticky-header { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); border-bottom: 1px solid #e2e8f0; }
-        
         #pdf-content { position: absolute; left: -9999px; top: -9999px; width: 800px; }
         #lawContainer::-webkit-scrollbar { width: 6px; }
         #lawContainer::-webkit-scrollbar-track { background: #f1f5f9; }
         #lawContainer::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        
         .article-card { border-radius: 1rem; border-width: 1px; padding: 1.25rem; margin-bottom: 1rem; }
         .article-title { font-weight: 900; margin-bottom: 0.5rem; display: block; font-size: 1.1rem; }
-        .article-content { font-size: 0.95rem; line-height: 1.6; font-weight: 500; }
+        .article-content { font-size: 0.95rem; line-height: 1.7; font-weight: 500; }
         .details-list { margin-top: 0.75rem; list-style-type: disc; padding-right: 1.5rem; }
-        .details-list li { margin-bottom: 0.4rem; font-size: 0.9rem; }
+        .details-list li { margin-bottom: 0.5rem; font-size: 0.9rem; color: #334155; }
         .num-list { list-style-type: decimal; }
     </style>
 </head>
@@ -33,13 +31,18 @@
 <div class="max-w-4xl mx-auto bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-gray-100">
     <!-- Header -->
     <div class="sticky-header p-6 md:p-8 text-center">
-        <h1 class="text-2xl md:text-3xl font-black text-blue-900 mb-2 leading-tight">قانون صندوق مساعدة الحالات المرضية الطارئة</h1>
-        <p class="text-blue-600 font-bold text-lg">قرية محبران - الملحق الإضافي الشامل (المواد ٢٩-٤٥)</p>
+        <h1 class="text-2xl md:text-3xl font-black text-blue-900 mb-2 leading-tight">ميثاق ملهق القانون الإضافي</h1>
+        <p class="text-blue-600 font-bold text-lg">صندوق مساعدة الحالات المرضية الطارئة - قرية محبران</p>
         
         <div class="mt-6 bg-gray-100 rounded-full h-3 w-full max-w-lg mx-auto overflow-hidden shadow-inner">
             <div id="progressBar" class="bg-gradient-to-l from-blue-700 to-blue-400 h-full w-0 transition-all duration-700 ease-out"></div>
         </div>
-        <p id="progressText" class="text-xs text-gray-500 mt-3 font-bold uppercase tracking-widest">اكتمال الموافقة: (0/17)</p>
+        <p id="progressText" class="text-xs text-gray-500 mt-3 font-bold uppercase tracking-widest">اكتمال المراجعة: (0/17)</p>
+    </div>
+
+    <!-- Intro Text -->
+    <div class="px-8 pt-4 pb-2 text-sm text-gray-600 leading-relaxed text-justify border-b border-gray-50 bg-gray-50/30">
+        بناءً على القانون الأساسي وبنود الصندوق السابقة التي انتهت بالمادة رقم (٢٨)، وبناءً على ما تم الاتفاق عليه واعتماده من قبل الأعضاء المعينين في القرية، تُضاف هذه الحزمة من القرارات والمواد التنظيمية إلى قانون الصندوق، وتُعتبر جزءًا مكملًا وملزمًا للنظام العام للصندوق، ويُعمل بها من تاريخ اعتمادها رسميًا.
     </div>
 
     <!-- Law List -->
@@ -48,20 +51,20 @@
     </div>
 
     <!-- Action Section -->
-    <div class="p-8 md:p-12 bg-white border-t border-gray-100 shadow-[0_-10px_20px_rgba(0,0,0,0.02)]">
+    <div class="p-8 md:p-12 bg-white border-t border-gray-100">
         <div class="max-w-md mx-auto space-y-6 text-center">
             <div id="registrationGuard">
                 <input type="text" id="fullName" placeholder="أدخل اسمك الثلاثي للتوقيع..." 
                     class="w-full px-6 py-5 rounded-2xl border-2 border-gray-100 focus:border-blue-500 focus:bg-blue-50/30 outline-none text-center font-bold text-xl transition-all shadow-sm">
                 
                 <button id="submitBtn" disabled class="mt-4 w-full bg-gray-300 text-white font-bold py-5 rounded-2xl shadow-xl cursor-not-allowed transition-all flex items-center justify-center gap-3 active:scale-95 group">
-                    <span id="btnLabel">يرجى الموافقة على جميع المواد</span>
+                    <span id="btnLabel">يرجى قراءة جميع المواد</span>
                     <div id="btnLoader" class="hidden w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                 </button>
             </div>
 
             <div class="pt-6 border-t border-gray-50 flex flex-col items-center gap-2">
-                <div class="flex flex-wrap justify-center items-center gap-3 bg-blue-50 px-6 py-3 rounded-full border border-blue-100 shadow-sm">
+                <div class="flex flex-wrap justify-center items-center gap-3 bg-blue-50 px-6 py-3 rounded-full border border-blue-100">
                     <span class="text-[10px] font-bold text-blue-900 opacity-60 uppercase">إشراف:</span>
                     <span class="text-sm font-black text-blue-800">مصطفى الشجاع</span>
                     <div class="w-1.5 h-1.5 bg-blue-300 rounded-full"></div>
@@ -76,15 +79,15 @@
     <div class="p-8 bg-gray-50 border-t border-gray-100">
         <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
             <div class="flex items-center gap-3">
-                <div class="w-3 h-8 bg-blue-600 rounded-full animate-pulse"></div>
-                <h3 class="text-xl font-black text-gray-800">سجل الموقعين المعتمدين</h3>
+                <div class="w-3 h-8 bg-blue-600 rounded-full"></div>
+                <h3 class="text-xl font-black text-gray-800">سجل الملتزمين بالملحق</h3>
             </div>
             <div class="flex gap-3">
-                <button id="copyNames" class="hidden text-xs bg-white text-blue-600 border border-blue-200 px-4 py-3 rounded-2xl font-bold hover:bg-blue-50 transition-all shadow-sm">
-                    نسخ للواتساب
+                <button id="copyNames" class="hidden text-xs bg-white text-blue-600 border border-blue-200 px-4 py-3 rounded-2xl font-bold hover:bg-blue-50 shadow-sm">
+                    نسخ القائمة
                 </button>
-                <button id="downloadPdf" class="hidden text-xs bg-red-600 text-white px-5 py-3 rounded-2xl font-bold hover:bg-red-700 transition-all shadow-lg flex items-center gap-2">
-                    تحميل تقرير PDF
+                <button id="downloadPdf" class="hidden text-xs bg-red-600 text-white px-5 py-3 rounded-2xl font-bold hover:bg-red-700 shadow-lg flex items-center gap-2">
+                    تصدير PDF
                 </button>
             </div>
         </div>
@@ -94,13 +97,13 @@
                 <table class="w-full text-right text-sm">
                     <thead class="bg-gray-100 text-gray-600 font-bold">
                         <tr>
-                            <th class="px-6 py-4">الاسم الكامل للملتزم</th>
-                            <th class="px-6 py-4">تاريخ التوثيق</th>
-                            <th class="px-6 py-4 text-center">صفة الالتزام</th>
+                            <th class="px-6 py-4">الاسم الكامل</th>
+                            <th class="px-6 py-4">تاريخ التوقيع</th>
+                            <th class="px-6 py-4 text-center">الحالة</th>
                         </tr>
                     </thead>
                     <tbody id="signaturesTableBody" class="divide-y divide-gray-100">
-                        <tr><td colspan="3" class="px-6 py-12 text-center text-gray-400 italic">بانتظار التحميل...</td></tr>
+                        <tr><td colspan="3" class="px-6 py-12 text-center text-gray-400 italic">جاري تحميل البيانات...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -111,23 +114,10 @@
 <!-- Hidden PDF Template -->
 <div id="pdf-content" style="padding: 40px; direction: rtl; font-family: 'Tajawal', sans-serif; background: white; color: black;">
     <div style="text-align: center; border-bottom: 4px solid #1e3a8a; padding-bottom: 20px; margin-bottom: 25px;">
-        <h1 style="color: #1e3a8a; font-size: 24px; margin: 0; font-weight: 900;">التقرير الرسمي لميثاق صندوق مساعدة الحالات المرضية الطارئة</h1>
-        <p style="color: #2563eb; font-size: 14px; font-weight: bold; margin-top: 8px;">قرية محبران - ميثاق التزام وتكافل اجتماعي (الملحق الإضافي)</p>
-        <p id="pdf-date" style="font-size: 11px; color: #64748b; margin-top: 5px;"></p>
+        <h1 style="color: #1e3a8a; font-size: 24px; margin: 0; font-weight: 900;">التقرير الرسمي لملحق قانون صندوق محبران</h1>
+        <p style="color: #2563eb; font-size: 14px; font-weight: bold; margin-top: 8px;">توثيق الالتزام بالمواد المستحدثة (٢٩ - ٤٥)</p>
     </div>
     <div id="pdf-laws" style="font-size: 11px; line-height: 1.5; color: #1e293b; text-align: justify;"></div>
-    <div style="page-break-before: always; height: 10px;"></div>
-    <h2 style="font-size: 18px; color: #1e3a8a; margin-top: 20px; margin-bottom: 12px; border-right: 6px solid #2563eb; padding-right: 12px; font-weight: 800;">سجل الموقعين على الملحق</h2>
-    <table style="width: 100%; border-collapse: collapse; margin-top: 5px;">
-        <thead>
-            <tr style="background-color: #f8fafc;">
-                <th style="border: 1px solid #cbd5e1; padding: 10px; text-align: center; width: 40px;">م</th>
-                <th style="border: 1px solid #cbd5e1; padding: 10px; text-align: right;">الاسم الكامل</th>
-                <th style="border: 1px solid #cbd5e1; padding: 10px; text-align: center;">تاريخ التوقيع</th>
-            </tr>
-        </thead>
-        <tbody id="pdf-table-body" style="font-size: 11px;"></tbody>
-    </table>
 </div>
 
 <script type="module">
@@ -148,11 +138,11 @@
         {
             id: 29,
             title: "المادة ٢٩: مبدأ التكافل والإلزام بالمساهمة ووحدة الصف",
-            content: "يقوم الصندوق على مبدأ التكافل الاجتماعي والتعاون وتحمل المسؤولية المشتركة. وتُعتبر المساهمة واجباً اجتماعياً وأخلاقياً وفق قاعدة 'الغُرم بالغُنم'.",
+            content: "يقوم الصندوق على مبدأ التكافل الاجتماعي والتعاون وتحمل المسؤولية المشتركة بين أبناء القرية، وتُعتبر المساهمة في الصندوق واجباً اجتماعياً وأخلاقياً وإلزاماً جماعياً على كل شخص قادر ومقتدر من أبناء القرية، وفق قاعدة: 'الغُرم بالغُنم'، بحيث إن من يشارك ويتحمل المسؤولية يكون له حق الاستفادة وقت الحاجة.",
             details: [
-                "كل من يمتنع أو يتهرب يفقد حقه وحق أسرته في الاستفادة مستقبلاً.",
-                "يُعتبر أي سلوك يهدف لشق الصف، إثارة الفوضى، تعطيل القرارات، أو التحريض أعمالاً مخالفة للنظام المجتمعي.",
-                "يحق للإدارة اتخاذ إجراءات قانونية وتنظيمية تحفظ مصلحة الملتزمين."
+                "يُعد كل من يمتنع عن المساهمة أو يتهرب من الالتزام أو يخرج عن نظام الصندوق أو يعمل على شق الصف أو تعطيل مصالح القرية أو إثارة الفوضى والخلافات شخصاً خارجاً عن الغُرم ومسار القرية ونظامها المجتمعي، وبالتالي يفقد حقه وحق أسرته في المطالبة بالدعم أو الاستفادة من خدمات الصندوق مستقبلاً، إلا بقرار استثنائي من الإدارة واللجنة التشاورية.",
+                "يحق للإدارة توثيق حالات الامتناع أو الإضرار بمصالح الصندوق أو مخالفة أنظمته واتخاذ ما تراه مناسباً من إجراءات تنظيمية وقانونية تحفظ مصلحة الصندوق ووحدة القرية وعدالة التوزيع بين الملتزمين وغير الملتزمين.",
+                "الأعمال المخالفة: شق الصف، إثارة الفوضى، تعطيل قرارات الإدارة، التحريض، نشر الخلافات، الإضرار بسمعة الصندوق أو القرية. هذه الأعمال قد تُعرض صاحبها للمساءلة التنظيمية والقانونية أمام الجهات المختصة إذا ترتب عليها ضرر عام أو خاص."
             ],
             color: "border-blue-200 bg-blue-50/30",
             titleColor: "text-blue-800"
@@ -160,116 +150,109 @@
         {
             id: 30,
             title: "المادة ٣٠: تنظيم التبرعات ومنع الدعم العشوائي",
-            content: "تنظيم المسار المالي للتبرعات لضمان الشفافية والعدالة:",
+            content: "لضمان الشفافية وحماية الموارد المالية للصندوق:",
             details: [
-                "جميع التبرعات تدخل عبر الصندوق وتوثق رسمياً.",
-                "يُمنع تسليم مبالغ مباشرة للمريض أو أسرته خارج إطار الصندوق.",
-                "يُمنع نشر الحالات أو جمع تبرعات دون إذن رسمي من الإدارة.",
-                "المخالفة تستوجب الحرمان من الدعم والاستبعاد من برامج القرية."
+                "1. جميع التبرعات والمساهمات الخاصة بالحالات المرضية يجب أن تدخل عبر الصندوق فقط.",
+                "2. تُوثق جميع الأموال رسمياً وبشفافية كاملة.",
+                "3. يُمنع تسليم أي مبالغ مباشرة للمريض أو أسرته أو لأي جهة خارج إطار الصندوق.",
+                "4. يُمنع نشر الحالات أو جمع التبرعات أو التواصل مع المتبرعين خارج إطار الإدارة دون إذن رسمي.",
+                "5. كل من يخالف هذا النظام يحق للإدارة حرمانه من الدعم الحالي والمستقبلي واستبعاده من برامج الصندوق والقرية."
             ],
             color: "border-emerald-200 bg-emerald-50/30",
-            titleColor: "text-emerald-800",
-            listType: "num-list"
+            titleColor: "text-emerald-800"
         },
         {
             id: 31,
             title: "المادة ٣١: نطاق دعم الصندوق وحدود المسؤولية",
-            content: "يقتصر الدعم على الجوانب العلاجية والصحية فقط (علاج، عمليات، فحوصات، أدوية، رقود).",
+            content: "يقتصر دعم الصندوق على الجوانب العلاجية والصحية فقط، وتشمل:",
             details: [
-                "لا يشمل: تعويض ممتلكات، ديون، مصاريف معيشية، أو مصاريف دفن وعزاء.",
-                "تنتهي المسؤولية فور الوفاة، ولا التزامات لاحقة إلا بقرار استثنائي من الرئيس والنائب معاً."
+                "1. تكاليف العلاج الطبي، العمليات الجراحية، الفحوصات والتحاليل الطبية، الأدوية الأساسية المرتبطة بالحالة، تكاليف الرقود والتنويم بالمستشفيات.",
+                "لا يشمل الصندوق: تعويض خسائر الممتلكات، إصلاح الأضرار، سداد الديون، المصاريف المعيشية، مصاريف الدفن والعزاء، أو أي مصاريف كمالية أو علاج في جهات غير معتمدة.",
+                "تنتهي مسؤولية الصندوق فور وفاة الحالة، ولا يتحمل أي التزامات لاحقة إلا بقرار استثنائي وموافقة الإدارة واللجنة التشاورية، ويشترط موافقة الرئيس والنائب معاً."
             ],
             color: "border-purple-200 bg-purple-50/30",
-            titleColor: "text-purple-800",
-            listType: "num-list"
+            titleColor: "text-purple-800"
         },
         {
             id: 32,
             title: "المادة ٣٢: نسب الدعم والسقف المالي",
-            content: "تحديد سقف التمويل لضمان استدامة الصندوق:",
+            content: "الضوابط المالية لصرف المساعدات:",
             details: [
-                "٥٠٪ بحد أقصى للحالات المرضية، و٣٠٪ للحوادث العرضية.",
-                "الحد الأعلى لدعم أي حالة هو ٢,٠٠٠,٠٠٠ ريال يمني فقط.",
-                "يُغطى المتبقي من أهل المريض وأهل الخير وأبناء القرية.",
-                "الدعم مرة واحدة سنوياً إلا في الحالات الاستثنائية التي تقرها الإدارة."
+                "1. يساهم الصندوق بما لا يتجاوز: 50٪ من تكلفة الحالات المرضية، و30٪ من تكلفة الحوادث والإصابات العرضية.",
+                "2. الحد الأعلى لدعم أي حالة هو: 2,000,000 ريال يمني فقط لا غير.",
+                "3. لا يجوز تجاوز هذا السقف إلا بقرار استثنائي من أغلبية الإدارة واللجنة التشاورية.",
+                "4. لا يجوز أن تستحوذ حالة واحدة على ما يضر باستمرارية الصندوق أو يؤثر على الحالات القادمة.",
+                "5. المبلغ المتبقي يتم تغطيته من: أهل المريض، أهل الخير، أبناء القرية، والمتبرعين.",
+                "6. يساعد الصندوق المريض مرة واحدة في السنة، إلا إذا ساءت الحالة وتمت مناقشتها داخل الإدارة والموافقة عليها كحالة استثنائية."
             ],
             color: "border-amber-200 bg-amber-50/30",
-            titleColor: "text-amber-800",
-            listType: "num-list"
+            titleColor: "text-amber-800"
         },
         {
             id: 33,
             title: "المادة ٣٣: تصنيف الحالات وآلية المعالجة الطبية",
-            content: "تصنيف المساعدات بناءً على التكلفة والقدرة المادية:",
+            content: "تنظيم الدعم حسب التكلفة والقدرة المادية واللوائح التنفيذية:",
             details: [
-                "أقل من ٢٠٠ ألف ريال للأسر القادرة لا يشملها الدعم.",
-                "أقل من ٣٠٠ ألف ريال يغطيها الصندوق مباشرة دون تبرعات عامة.",
-                "تجاوز ٥٠٠ ألف ريال يستوجب فتح باب المساهمة العامة.",
-                "للإدارة حق اختيار المستشفى أو الطبيب المناسب تكلفة وجودة."
+                "1. الحالات التي تقل تكلفتها عن 200,000 ريال يمني وكانت الأسرة قادرة مالياً، لا يشملها دعم الصندوق.",
+                "2. إذا كانت تكلفة الحالة أقل من 300,000 ريال يمني، يغطيها الصندوق مباشرة دون فتح باب تبرعات عامة.",
+                "3. إذا تجاوزت تكلفة الحالة 500,000 ريال يمني، يلتزم الصندوق بالنسبة المحددة ويتم فتح باب المساهمة العامة لتغطية المتبقي.",
+                "4. إذا تجاوزت الحالة قدرة الصندوق، يحق للإدارة تقسيم الدعم على دفعات أو تخفيضه بما يحفظ استمرارية الصندوق.",
+                "يحق للإدارة: اعتماد علاج المريض في المستشفيات الحكومية أو المراكز التي تقدم خصومات، أو تحويل الحالة لجهات طبية مناسبة جودة وتكلفة. لا يحق للمريض فرض مستشفى أو طبيب مرتفع التكاليف دون موافقة الإدارة."
             ],
             color: "border-cyan-200 bg-cyan-50/30",
-            titleColor: "text-cyan-800",
-            listType: "num-list"
+            titleColor: "text-cyan-800"
         },
         {
             id: 34,
             title: "المادة ٣٤: شروط اعتماد الحالات",
-            content: "المتطلبات الإلزامية قبل صرف أي مبالغ:",
+            content: "لا يتم اعتماد أي حالة أو صرف أي مبلغ إلا بعد استيفاء الشروط:",
             details: [
-                "تقرير طبي رسمي وتقدير مالي معتمد.",
-                "الإفصاح عن الدعم الخارجي والالتزام بالأنظمة.",
-                "التحقق من الاحتياج الفعلي، وللإدارة حق التدخل العاجل في الحالات الحرجة."
+                "1. تقديم تقرير طبي رسمي وواضح، تقديم تقدير مالي معتمد، عرض الحالة رسمياً على الإدارة قبل طلب الدعم، الإفصاح عن أي دعم خارجي، الالتزام الكامل بأنظمة الصندوق، والتحقق من صحة الحالة واحتياجها الفعلي.",
+                "وللإدارة حق التدخل العاجل في الحالات الحرجة التي تهدد حياة المريض، مع توثيق القرار ومراجعته لاحقاً."
             ],
             color: "border-rose-200 bg-rose-50/30",
-            titleColor: "text-rose-800",
-            listType: "num-list"
+            titleColor: "text-rose-800"
         },
         {
             id: 35,
             title: "المادة ٣٥: أولوية الاستحقاق",
-            content: "معايير ترتيب الأولويات في الدعم:",
+            content: "تُرتب الحالات بحسب المعايير التالية:",
             details: [
-                "خطورة الحالة والحاجة الطبية العاجلة.",
-                "الوضع المالي للأسرة ومدى التزامها تجاه الصندوق.",
-                "خلو سجل المستفيد من السوابق التنظيمية."
+                "1. خطورة الحالة، الحاجة الطبية العاجلة، الوضع المالي للأسرة، التزام صاحب الحالة وأسرته تجاه الصندوق، وخلو سجل المستفيد من المخالفات أو السوابق التنظيمية."
             ],
             color: "border-indigo-200 bg-indigo-50/30",
-            titleColor: "text-indigo-800",
-            listType: "num-list"
+            titleColor: "text-indigo-800"
         },
         {
             id: 36,
             title: "المادة ٣٦: حالات المنع والحرمان والتلاعب",
-            content: "يُحرم المستفيد من الدعم حالياً ومستقبلاً في حالات:",
+            content: "يُرفض الطلب ويُحرم صاحبه من الدعم الحالي والمستقبلي إذا ثبت:",
             details: [
-                "الكذب، التلاعب بالفواتير، أو إخفاء الدعم الخارجي.",
-                "تزوير التقارير الطبية أو تعديلها.",
-                "استخدام الوساطات والضغط الاجتماعي، أو نشر الحالات دون إذن.",
-                "إثارة الناس ضد الإدارة بمعلومات مضللة."
+                "1. الكذب أو التلاعب في تفاصيل الحالة، إخفاء وجود دعم خارجي، جمع تبرعات خارج إطار الصندوق، نشر الحالة دون إذن رسمي، تقديم فواتير أو تقارير غير صحيحة أو مضخمة، التلاعب بالتقارير الطبية أو تزويرها.",
+                "7. تقديم تقارير من جهات أو أطباء غير معتمدين، استخدام الوساطات أو الضغط الاجتماعي للتأثير على القرارات، إخفاء معلومات مالية أو طبية مؤثرة، استغلال الحالة لمكاسب شخصية أو إعلامية، ونشر معلومات مضللة ضد الإدارة.",
+                "وللإدارة الحق في إيقاف الحالة والتحقيق واتخاذ الإجراءات المناسبة فوراً."
             ],
             color: "border-red-200 bg-red-50/30",
-            titleColor: "text-red-800",
-            listType: "num-list"
+            titleColor: "text-red-800"
         },
         {
             id: 37,
             title: "المادة ٣٧: حماية أموال الصندوق والشفافية المالية",
-            content: "أموال الصندوق أمانة جماعية لا تخضع للمجاملة أو الضغط القبلي.",
+            content: "مبادئ الإدارة المالية الرشيدة:",
             details: [
-                "استمرارية الصندوق مقدمة على أي حالة فردية.",
-                "توثيق كامل لكل حالة وسجل واضح للمشاركين لتعزيز المصداقية."
+                "1. أموال الصندوق أمانة جماعية، لا يجوز صرفها بالعاطفة أو المجاملة أو القرابة أو الضغط القبلي. جميع قرارات الصرف تخضع للنظام واللوائح فقط.",
+                "4. الحفاظ على استمرارية الصندوق مقدم على أي حالة فردية. تُوثق كل حالة مالياً وإدارياً بشكل كامل، ويتم توفير سجل واضح للمشاركين لتعزيز الثقة."
             ],
             color: "border-slate-200 bg-slate-50/30",
-            titleColor: "text-slate-800",
-            listType: "num-list"
+            titleColor: "text-slate-800"
         },
         {
             id: 38,
             title: "المادة ٣٨: القيادة التنفيذية والإشراف الإداري",
-            content: "الأعضاء المكلفون بالإشراف المباشر:",
+            content: "تتولى الإدارة التنفيذية الإشراف المباشر على جميع أعمال الصندوق، وهم:",
             details: [
-                "مصطفى محمد علي الشجاع، أحمد بن أحمد الشجاع، نبيل أحمد مصلح الشجاع، محمد بن محمد الحاج الشجاع.",
-                "صلاحياتهم تشمل استقبال واعتماد الطلبات والمتابعة المالية والإدارية."
+                "مصطفى محمد علي الشجاع - أحمد بن أحمد الشجاع - نبيل أحمد مصلح الشجاع - محمد بن محمد الحاج الشجاع.",
+                "يحق لهم: استقبال الحالات، اعتماد أو رفض الطلبات، متابعة العلاج، الإشراف المالي والإداري، تنفيذ القرارات، وإدارة كل ما يتعلق بمصلحة الصندوق والقرية."
             ],
             color: "border-blue-300 bg-blue-100/20",
             titleColor: "text-blue-900"
@@ -277,9 +260,9 @@
         {
             id: 39,
             title: "المادة ٣٩: الإدارة التنفيذية والصلاحيات المخولة",
-            content: "تخويل الإدارة بكل ما يحقق مصلحة الصندوق والقرية، بما في ذلك:",
+            content: "الإدارة التنفيذية مخولة بكل ما يتعلق بالصندوق مالياً وإدارياً وتنظيمياً وطبياً، وتشمل صلاحياتها:",
             details: [
-                "تقييم الاحتياج، التنسيق مع المستشفيات، فرض العقوبات، وتعيين أو إعفاء الأعضاء."
+                "استقبال الحالات واعتمادها أو رفضها، التحقق من الحالات، تقييم الاحتياج، التنسيق مع المستشفيات، اعتماد الدعم العاجل، متابعة الصرف، حفظ الأموال، إصدار التعليمات، فرض العقوبات، تعيين أو إعفاء الأعضاء، واتخاذ كل ما يحقق مصلحة الصندوق والقرية."
             ],
             color: "border-teal-200 bg-teal-50/30",
             titleColor: "text-teal-800"
@@ -287,68 +270,63 @@
         {
             id: 40,
             title: "المادة ٤٠: الشورى والتصويت والصلاحيات الاستثنائية",
-            content: "آلية اتخاذ القرار في المواضيع المصيرية:",
+            content: "آلية اتخاذ القرار في المواضيع الجوهرية:",
             details: [
-                "اعتماد الشورى والتصويت، وصوت الرئيس والنائب مرجح عند التعادل.",
-                "للرئيس والنائب حق تمرير القرارات المتعطلة لضمان مصلحة الصندوق."
+                "1. تعتمد القرارات المصيرية والحالات الكبرى بالشورى والتصويت. يُعتبر تصويت الرئيس والنائب تصويتاً مرجحاً عند التعادل. إذا وصلت اللجنة لانسداد، يحق للرئيس والنائب تمرير القرار الذي يحقق مصلحة الصندوق والقرية.",
+                "4. يلتزم الجميع بتنفيذ القرار بعد اعتماده، فالمصلحة العامة مقدمة على المصالح الشخصية."
             ],
             color: "border-orange-200 bg-orange-50/30",
-            titleColor: "text-orange-800",
-            listType: "num-list"
+            titleColor: "text-orange-800"
         },
         {
             id: 41,
             title: "المادة ٤١: حماية النظام ووحدة الصف والعقوبات التنظيمية",
-            content: "يُمنع إثارة الفوضى، إفشاء الأسرار، أو شق الصف.",
+            content: "يُمنع منعاً باتاً: إثارة الفوضى، الثرثرة المعطلة، تعطيل أعمال الإدارة، إفشاء الأسرار، نقل الأخبار الداخلية، شق الصف، إثارة الانقسامات، أو الإضرار بمصلحة القرية والصندوق.",
             details: [
-                "العقوبات: الإنذار، التجميد، الإعفاء، أو الاستبعاد النهائي.",
-                "للإدارة حق إحالة المضرين عمداً بالمصلحة العامة إلى الجهات القانونية."
+                "العقوبات: 1. الإنذار، 2. التجميد المؤقت، 3. الإعفاء من المنصب، 4. الاستبعاد من الصندوق، 5. تعيين بديل عنه فوراً.",
+                "وإذا ثبت الإضرار المتعمد بوحدة الصف أو المصلحة العامة، فللإدارة الحق في إحالته إلى الجهات المختصة والقانون."
             ],
             color: "border-red-300 bg-red-100/10",
-            titleColor: "text-red-900",
-            listType: "num-list"
+            titleColor: "text-red-900"
         },
         {
             id: 42,
             title: "المادة ٤٢: أخلاقيات المنصب والعمل المؤسسي",
-            content: "التزام الأعضاء بالحكمة والرزانة والقدوة الحسنة، وتقديم مصلحة القرية على المصالح الشخصية.",
+            content: "التزامات أعضاء الإدارة واللجنة التشاورية:",
             details: [
-                "العمل بروح الفريق الواحد والابتعاد عن العصبية والانفعال."
+                "1. الحكمة والرزانة، احترام المنصب والتكليف، أن يكونوا قدوة وعقالاً ورجال إصلاح، الالتزام بأدب الحوار وضبط النفس، تقديم مصلحة القرية على المصالح الشخصية، العمل بروح الفريق، والابتعاد عن العصبية والمحافظة على هيبة الإدارة."
             ],
             color: "border-violet-200 bg-violet-50/30",
-            titleColor: "text-violet-800",
-            listType: "num-list"
+            titleColor: "text-violet-800"
         },
         {
             id: 43,
             title: "المادة ٤٣: الالتزام بالحضور والمشاركة الفاعلة",
-            content: "المشاركة واجب أساسي، والعضوية تكليف ومسؤولية وليست تشريفاً.",
+            content: "المشاركة بجدية في العمل المؤسسي:",
             details: [
-                "يحق للإدارة استبدال العضو غير الملتزم بآخر أكثر كفاءة."
+                "1. الحضور والمشاركة واجب أساسي على كل عضو. إذا ثبت تقصير العضو أو غيابه أو عدم تفاعله، يحق للإدارة إعفاؤه واستبداله بعضو أكثر التزاماً وكفاءة. العضوية تكليف ومسؤولية وليست منصباً شكلياً."
             ],
             color: "border-pink-200 bg-pink-50/30",
-            titleColor: "text-pink-800",
-            listType: "num-list"
+            titleColor: "text-pink-800"
         },
         {
             id: 44,
             title: "المادة ٤٤: الأحكام العامة والصلاحيات الاستثنائية للرئيس",
-            content: "صلاحيات الرئيس في حالات الطوارئ:",
+            content: "ضمان سرعة وفاعلية القرار:",
             details: [
-                "إصدار قرارات عاجلة لحماية المصلحة، وتمرير القرارات التي لم تُحسم خلال ٥ أيام.",
-                "يحق للإدارة تعديل أو إضافة بنود مستقبلية حسب مصلحة الصندوق."
+                "1. جميع الأنظمة والقرارات ملزمة للجميع. يحق للرئيس إصدار قرارات عاجلة دون تصويت لحماية مصلحة الصندوق أو منع الضرر. إذا لم يُحسم أي قرار خلال خمسة أيام، يحق للرئيس تمريره.",
+                "4. يلتزم الجميع بتنفيذ هذه المواد دون تعطيل، ويحق للإدارة تعديل أو إضافة أي بنود مستقبلية بما يخدم الصندوق."
             ],
             color: "border-sky-200 bg-sky-50/30",
-            titleColor: "text-sky-800",
-            listType: "num-list"
+            titleColor: "text-sky-800"
         },
         {
             id: 45,
             title: "المادة ٤٥: التوسع الإداري والتطوير التقني والإعلامي",
-            content: "التوجه نحو التوسع وتطوير الأنظمة:",
+            content: "الرؤية المستقبلية والتطوير:",
             details: [
-                "فتح التشاور لضم ممثلين عن المحرس والتبنيت.",
-                "تعيين (عمر مسعد صالح الشجاع) كمطور تقني وإعلامي رسمي للصندوق والقرية."
+                "يحق للإدارة طرح استفتاء بشأن إضافة ممثلين عن قرية المحرس وقرية التبنيت.",
+                "تعتمد الإدارة تعيين: عمر مسعد صالح الشجاع كمصمم ومطور تقني وإعلامي رسمي للصندوق والقرية، ويتولى: تصميم القرارات، تطوير برنامج التبرعات، تحديث بيانات المتبرعين، إعداد التقارير البصرية، وتطوير الأنظمة التقنية."
             ],
             color: "border-fuchsia-200 bg-fuchsia-50/30",
             titleColor: "text-fuchsia-800"
@@ -366,21 +344,22 @@
 
     let signatures = [];
 
-    if (localStorage.getItem('mahbran_appendix_signed_v2')) {
-        document.getElementById('registrationGuard').innerHTML = `<div class="bg-blue-50 p-6 rounded-2xl border border-blue-200 font-bold text-blue-800">✓ تم توثيق موافقتك على ميثاق الملحق الإضافي الجديد</div>`;
+    // LocalStorage Check
+    if (localStorage.getItem('mahbran_appendix_final_v1')) {
+        document.getElementById('registrationGuard').innerHTML = `<div class="bg-emerald-50 p-6 rounded-2xl border border-emerald-200 font-bold text-emerald-800">✓ تم توثيق موافقتك على الملحق الإضافي بنجاح</div>`;
     }
 
+    // Build Articles
     lawArticles.forEach((art) => {
         const item = document.createElement('div');
         item.className = `law-item article-card border-2 ${art.color} flex gap-4 items-start cursor-pointer transition-all duration-300`;
-        const listClass = art.listType || "";
-        let detailsHtml = art.details ? `<ul class="details-list text-gray-600 font-medium ${listClass}">${art.details.map(d => `<li>${d}</li>`).join('')}</ul>` : "";
+        const detailsHtml = art.details ? `<ul class="details-list">${art.details.map(d => `<li>${d}</li>`).join('')}</ul>` : "";
 
         item.innerHTML = `
             <input type="checkbox" class="item-check custom-checkbox mt-1 shrink-0">
             <div class="flex-1">
                 <span class="article-title ${art.titleColor}">${art.title}</span>
-                <p class="article-content text-gray-800 font-bold">${art.content}</p>
+                <p class="article-content text-gray-800">${art.content}</p>
                 ${detailsHtml}
             </div>
         `;
@@ -390,18 +369,18 @@
 
     const checks = document.querySelectorAll('.item-check');
     const updateProgress = () => {
-        const checked = Array.from(checks).filter(c => c.checked).length;
+        const checkedCount = Array.from(checks).filter(c => c.checked).length;
         const total = lawArticles.length;
         const name = fullNameInput?.value.trim() || "";
-        const percent = (checked / total) * 100;
+        const percent = (checkedCount / total) * 100;
         progressBar.style.width = `${percent}%`;
-        progressText.textContent = `اكتمال الموافقة: (${checked}/${total})`;
+        progressText.textContent = `اكتمال المراجعة: (${checkedCount}/${total})`;
         
         if(submitBtn) {
-            const isReady = checked === total && name.length >= 8;
+            const isReady = checkedCount === total && name.length >= 10;
             submitBtn.disabled = !isReady;
-            submitBtn.className = `mt-4 w-full font-bold py-5 rounded-2xl shadow-xl transition-all flex items-center justify-center gap-3 active:scale-95 group ${isReady ? 'bg-blue-700 text-white cursor-pointer' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`;
-            document.getElementById('btnLabel').textContent = isReady ? "توثيق الالتزام بالملحق الجديد" : (checked < total ? "وافق على جميع المواد" : "أدخل الاسم الثلاثي");
+            submitBtn.className = `mt-4 w-full font-bold py-5 rounded-2xl shadow-xl transition-all flex items-center justify-center gap-3 active:scale-95 ${isReady ? 'bg-blue-700 text-white cursor-pointer' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`;
+            document.getElementById('btnLabel').textContent = isReady ? "توثيق الالتزام بالملحق" : (checkedCount < total ? "راجع جميع المواد للموافقة" : "أدخل الاسم الثلاثي للتوقيع");
         }
     };
 
@@ -411,12 +390,12 @@
     });
     if(fullNameInput) fullNameInput.oninput = updateProgress;
 
-    // Firebase
+    // Firebase Implementation
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
     const auth = getAuth(app);
 
-    const init = async () => {
+    const loadSignatures = async () => {
         try {
             await signInAnonymously(auth);
             const q = query(collection(db, "appendix_signatures"), orderBy("at", "desc"));
@@ -424,68 +403,69 @@
                 tableBody.innerHTML = '';
                 signatures = [];
                 if(snap.empty) {
-                    tableBody.innerHTML = '<tr><td colspan="3" class="p-8 text-center text-gray-400 font-bold">لا يوجد موقعون حتى الآن</td></tr>';
+                    tableBody.innerHTML = '<tr><td colspan="3" class="p-8 text-center text-gray-400 font-bold">لا توجد توقيعات حالياً</td></tr>';
                     return;
                 }
                 downloadBtn.classList.remove('hidden');
                 copyBtn.classList.remove('hidden');
                 snap.forEach(doc => {
                     const data = doc.data();
-                    const date = data.at ? new Date(data.at.seconds * 1000).toLocaleDateString('ar-EG') : 'الآن';
-                    signatures.push({ name: data.name, date });
+                    const dateStr = data.at ? new Date(data.at.seconds * 1000).toLocaleDateString('ar-EG') : 'قيد المعالجة';
+                    signatures.push({ name: data.name, date: dateStr });
                     tableBody.insertAdjacentHTML('beforeend', `
                         <tr class="hover:bg-blue-50/50">
                             <td class="px-6 py-4 font-black text-gray-900">${data.name}</td>
-                            <td class="px-6 py-4 text-gray-400 text-xs font-bold">${date}</td>
-                            <td class="px-6 py-4 text-center"><span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-[10px] font-black">مُلتزم بالملحق</span></td>
+                            <td class="px-6 py-4 text-gray-500 text-xs">${dateStr}</td>
+                            <td class="px-6 py-4 text-center"><span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-[10px] font-black">موافق وملتزم</span></td>
                         </tr>
                     `);
                 });
             });
-        } catch (e) { console.error(e); }
+        } catch (e) { console.error("Firebase Auth Error", e); }
     };
-    init();
+    loadSignatures();
 
     submitBtn.onclick = async () => {
         submitBtn.disabled = true;
         document.getElementById('btnLoader').classList.remove('hidden');
         try {
-            await addDoc(collection(db, "appendix_signatures"), { name: fullNameInput.value.trim(), at: serverTimestamp() });
-            localStorage.setItem('mahbran_appendix_signed_v2', 'true');
+            await addDoc(collection(db, "appendix_signatures"), {
+                name: fullNameInput.value.trim(),
+                at: serverTimestamp(),
+                v: "final_v1"
+            });
+            localStorage.setItem('mahbran_appendix_final_v1', 'true');
             location.reload();
-        } catch (e) { alert("خطأ في الاتصال"); submitBtn.disabled = false; }
+        } catch (e) { alert("حدث خطأ أثناء التوثيق، يرجى المحاولة لاحقاً"); submitBtn.disabled = false; }
     };
 
     copyBtn.onclick = () => {
-        const text = "سجل الملتزمين بملحق قانون صندوق محبران:\n" + signatures.map((s, i) => `${i+1}. ${s.name}`).join('\n');
-        navigator.clipboard.writeText(text);
-        alert("تم نسخ القائمة!");
+        const listText = "سجل الملتزمين بملحق قانون صندوق محبران:\n" + signatures.map((s, i) => `${i+1}. ${s.name}`).join('\n');
+        navigator.clipboard.writeText(listText);
+        alert("تم نسخ القائمة بنجاح!");
     };
 
     downloadBtn.onclick = async () => {
         const pdfContent = document.getElementById('pdf-content');
-        document.getElementById('pdf-laws').innerHTML = lawArticles.map((art) => `
-            <div style="margin-bottom:12px; border-bottom: 1px solid #eee; padding-bottom:8px;">
-                <h3 style="margin:0; color:#1e3a8a; font-size:12px;">${art.title}</h3>
-                <p style="margin:4px 0;">${art.content}</p>
-                <ul style="margin:0; padding-right:15px; font-size:10px;">${art.details.map(d => `<li>${d}</li>`).join('')}</ul>
+        document.getElementById('pdf-laws').innerHTML = lawArticles.map(art => `
+            <div style="margin-bottom:15px; border-bottom: 1px solid #eee; padding-bottom:10px;">
+                <h3 style="margin:0 0 5px 0; color:#1e3a8a; font-size:12px;">${art.title}</h3>
+                <p style="margin:0;">${art.content}</p>
+                <ul style="margin-top:5px; padding-right:15px; font-size:10px;">${art.details.map(d => `<li>${d}</li>`).join('')}</ul>
             </div>
         `).join('');
         
-        document.getElementById('pdf-table-body').innerHTML = signatures.map((s, i) => `
-            <tr>
-                <td style="border:1px solid #cbd5e1;text-align:center;">${i+1}</td>
-                <td style="border:1px solid #cbd5e1;padding:8px;font-weight:bold;">${s.name}</td>
-                <td style="border:1px solid #cbd5e1;text-align:center;">${s.date}</td>
-            </tr>
-        `).join('');
-        
-        document.getElementById('pdf-date').textContent = "بتاريخ: " + new Date().toLocaleString('ar-EG');
         pdfContent.style.position = 'static';
-        const opt = { margin: 10, filename: 'قانون_محبران_الملحق_الجديد.pdf', html2canvas: { scale: 2 }, jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } };
+        const opt = { 
+            margin: 10, 
+            filename: 'ملحق_قانون_صندوق_محبران.pdf', 
+            html2canvas: { scale: 2 }, 
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } 
+        };
         await html2pdf().from(pdfContent).set(opt).save();
         pdfContent.style.position = 'absolute';
     };
 </script>
 </body>
 </html>
+
