@@ -143,7 +143,7 @@
             <p style="color: #2563eb; font-size: 14px; font-weight: bold; margin-top: 8px;">توثيق الالتزام بالمواد المستحدثة (٢٩ - ٤٦)</p>
         </div>
         
-        <div id="pdf-laws" style="font-size: 12px; line-height: 1.6; color: #2d3748; text-align: justify;"></div>
+        <div id="pdf-laws" style="font-size: 12px; line-height: 1.7; color: #2d3748; text-align: justify;"></div>
         
         <div id="pdf-signatures" style="margin-top: 35px; padding-top: 20px; border-top: 2px solid #e2e8f0;"></div>
         
@@ -505,7 +505,7 @@
                 tableBody.innerHTML = '';
                 signatures = [];
                 if(snap.empty) {
-                    tableBody.innerHTML = '<tr><td colspan="3" class="p-8 text-center text-gray-400 font-bold">لا توجد توقيعات حالياً</td></tr>';
+                    tableBody.innerHTML = '<td><td colspan="3" class="p-8 text-center text-gray-400 font-bold">لا توجد توقيعات حالياً</td></tr>';
                     return;
                 }
                 downloadBtn.classList.remove('hidden');
@@ -563,26 +563,29 @@
     };
 
     downloadBtn.onclick = async () => {
-        // Build PDF laws HTML with full details
+        // Build complete PDF laws HTML with all details including names
         const pdfLawsHtml = lawArticles.map(art => {
-            const detailsHtml = art.details ? `
-                <ul style="margin-top: 8px; padding-right: 25px; list-style: none;">
-                    ${art.details.map(d => {
-                        if (d.bold) {
-                            return `<li style="margin-bottom: 6px; font-weight: bold; margin-top: 10px;">${d.text}</li>`;
-                        } else if (d.num) {
-                            return `<li style="margin-bottom: 4px;"><strong>${d.num}.</strong> ${d.text}</li>`;
-                        } else {
-                            return `<li style="margin-bottom: 4px;">• ${d.text}</li>`;
-                        }
-                    }).join('')}
-                </ul>
-            ` : '';
+            // Build details HTML with proper formatting for names and all content
+            let detailsHtml = '';
+            if (art.details && art.details.length > 0) {
+                detailsHtml = '<ul style="margin-top: 8px; padding-right: 20px; list-style: none; margin-bottom: 0;">';
+                for (const d of art.details) {
+                    if (d.bold) {
+                        detailsHtml += `<li style="margin-bottom: 8px; font-weight: bold; margin-top: 12px; color: #1e3a8a;">${d.text}</li>`;
+                    } else if (d.num) {
+                        detailsHtml += `<li style="margin-bottom: 6px;"><strong style="color: #2563eb;">${d.num}.</strong> ${d.text}</li>`;
+                    } else {
+                        // For names and other items without numbering - display with a distinct style
+                        detailsHtml += `<li style="margin-bottom: 6px; padding-right: 12px;">• ${d.text}</li>`;
+                    }
+                }
+                detailsHtml += '</ul>';
+            }
             
             return `
-                <div style="margin-bottom: 18px; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px;">
-                    <h3 style="margin: 0 0 6px 0; color: #1e3a8a; font-size: 14px; font-weight: 900;">${art.title}</h3>
-                    ${art.content ? `<p style="margin: 0 0 5px 0; font-weight: bold; color: #2d3748;">${art.content}</p>` : ''}
+                <div style="margin-bottom: 22px; border-bottom: 1px solid #e2e8f0; padding-bottom: 14px; page-break-inside: avoid;">
+                    <h3 style="margin: 0 0 8px 0; color: #1e3a8a; font-size: 14px; font-weight: 900; background: #f0f9ff; padding: 5px 10px; border-right: 3px solid #2563eb;">${art.title}</h3>
+                    ${art.content ? `<p style="margin: 0 0 8px 0; font-weight: bold; color: #2d3748; padding: 0 5px;">${art.content}</p>` : ''}
                     ${detailsHtml}
                 </div>
             `;
@@ -592,7 +595,7 @@
         let signaturesHtml = '';
         if (signatures.length > 0) {
             signaturesHtml = `
-                <h3 style="font-size: 16px; font-weight: 900; color: #1e3a8a; margin-bottom: 15px;">📋 سجل الملتزمين والتوقيعات</h3>
+                <h3 style="font-size: 16px; font-weight: 900; color: #1e3a8a; margin-bottom: 15px; margin-top: 20px; border-right: 4px solid #2563eb; padding-right: 12px;">📋 سجل الملتزمين والتوقيعات</h3>
                 <table style="width: 100%; border-collapse: collapse; font-size: 11px; text-align: right;">
                     <thead>
                         <tr style="background-color: #f1f5f9; border-bottom: 2px solid #cbd5e1;">
@@ -607,14 +610,14 @@
                                 <td style="padding: 8px; border: 1px solid #e2e8f0; text-align: center;">${idx + 1}</td>
                                 <td style="padding: 8px; border: 1px solid #e2e8f0; font-weight: bold;">${s.name}</td>
                                 <td style="padding: 8px; border: 1px solid #e2e8f0;">${s.date}</td>
-                             </tr>
+                            </tr>
                         `).join('')}
                     </tbody>
                  </table>
-                <p style="margin-top: 15px; font-size: 11px; color: #2d3748;">عدد الملتزمين: ${signatures.length} شخص</p>
+                <p style="margin-top: 15px; font-size: 11px; color: #2d3748; font-weight: bold;">عدد الملتزمين: ${signatures.length} شخص</p>
             `;
         } else {
-            signaturesHtml = `<p style="font-size: 12px; color: #718096;">لا توجد توقيعات مسجلة حتى الآن.</p>`;
+            signaturesHtml = `<p style="font-size: 12px; color: #718096; margin-top: 20px;">لا توجد توقيعات مسجلة حتى الآن.</p>`;
         }
         
         document.getElementById('pdf-laws').innerHTML = pdfLawsHtml;
@@ -635,7 +638,7 @@
         
         try {
             const loader = document.createElement('div');
-            loader.innerHTML = '<div style="position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:white; padding:20px; border-radius:15px; box-shadow:0 20px 35px rgba(0,0,0,0.2); z-index:9999; text-align:center;"><div class="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full mx-auto mb-3"></div><p class="font-bold">جاري تجهيز ملف PDF...</p></div>';
+            loader.innerHTML = '<div style="position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:white; padding:20px; border-radius:15px; box-shadow:0 20px 35px rgba(0,0,0,0.2); z-index:9999; text-align:center;"><div class="animate-spin w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full mx-auto mb-3"></div><p class="font-bold">جاري تجهيز ملف PDF...</p><p class="text-xs text-gray-500 mt-2">قد يستغرق قليلاً من الوقت</p></div>';
             document.body.appendChild(loader);
             
             await html2pdf().from(pdfElement).set(opt).save();
